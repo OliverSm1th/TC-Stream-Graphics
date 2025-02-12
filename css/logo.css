@@ -1,0 +1,48 @@
+/* SCSS File - lower-third.1.scss */
+body {
+  background-color: transparent;
+  margin: 0;
+}
+
+.lt-style-one .logo {
+  position: relative;
+  left: 50%;
+  transform: translateX(-70%);
+  height: 100vh;
+  z-index: 1;
+}
+
+.overlay {
+  background: linear-gradient(#000, #000) no-repeat center/100% 2px, linear-gradient(#000, #000) no-repeat center/2px 100%;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  z-index: 2;
+}
+
+.graphic {
+  position: absolute;
+  top: 46%;
+  transform: translateY(-50%);
+  left: 50%;
+}
+
+.text-line {
+  text-align: left;
+  height: min-content;
+  width: fit-content;
+  color: white;
+  text-wrap: nowrap;
+  overflow: hidden;
+  white-space: pre;
+  font-family: "Pressio TEST";
+  font-size: 8.5vh;
+  margin-top: -2px;
+  line-height: 9.35vh;
+  z-index: 0;
+  pad: 0;
+  opacity: 0;
+  border-radius: 1.5%;
+}
+
+/*# sourceMappingURL=logo.css.map */

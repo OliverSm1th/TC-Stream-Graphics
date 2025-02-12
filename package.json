@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "gsap": "^3.12.7",
+    "inliner": "^1.13.1"
+  },
+  "scripts": {
+    "build": "inliner html/lower-third-1.html > build/lower-third-1.html",
+    "server": "http-server -p8080 -c-1",
+    "sass": "sass --watch scss:css"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1",
+    "sass": "^1.84.0"
+  }
+}
