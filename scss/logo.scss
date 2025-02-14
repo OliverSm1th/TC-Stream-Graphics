@@ -38,9 +38,9 @@ body {
 
 $fontsize:8.5vh;
 .text-line {
-    text-align: left;
+    text-align: right;
     height: min-content;
-    width: fit-content;
+    width: min-content;
     // width: 0px;
     color: white;
     text-wrap: nowrap;
@@ -50,6 +50,7 @@ $fontsize:8.5vh;
     font-family: 'Pressio TEST';
     // font-weight: bold;
     font-size: $fontsize;
+    
     // font-size-adjust: ex-height 8;
     // padding-left: 1vw;
     // padding-right: 3vw;

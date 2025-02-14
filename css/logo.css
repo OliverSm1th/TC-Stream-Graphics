@@ -28,9 +28,9 @@ body {
 }
 
 .text-line {
-  text-align: left;
+  text-align: right;
   height: min-content;
-  width: fit-content;
+  width: min-content;
   color: white;
   text-wrap: nowrap;
   overflow: hidden;
