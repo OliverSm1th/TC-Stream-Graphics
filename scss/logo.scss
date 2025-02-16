@@ -7,17 +7,13 @@ body {
     margin: 0;
 }
 
-// .lt-style-one {
-//     // background-color: gray;
-    
-// }
-
 .lt-style-one .logo {
     position: relative;
     left: 50%;
     transform: translateX(-70%);
-    height: 100vh;
+    height: 99vh;
     z-index: 1;
+    opacity: 0;
 }
 
 .overlay {
@@ -59,7 +55,7 @@ $fontsize:8.5vh;
     z-index: 0;
     // Hide:
     pad: 0;
-    opacity: 0;
+    opacity: 1;
     border-radius: 1.5%;
     // width: 0;
 }

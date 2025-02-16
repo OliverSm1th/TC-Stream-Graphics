@@ -8,8 +8,9 @@ body {
   position: relative;
   left: 50%;
   transform: translateX(-70%);
-  height: 100vh;
+  height: 99vh;
   z-index: 1;
+  opacity: 0;
 }
 
 .overlay {
@@ -41,7 +42,7 @@ body {
   line-height: 9.35vh;
   z-index: 0;
   pad: 0;
-  opacity: 0;
+  opacity: 1;
   border-radius: 1.5%;
 }
 

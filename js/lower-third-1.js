@@ -66,6 +66,7 @@ const _graphic = (function() {
         }
     }
     function play() {
+        console.log("PLAY: "+state)
         if (state == 0) {
             update({
                 "data": [
@@ -92,6 +93,7 @@ const _graphic = (function() {
         } 
     }
     function next() {
+        console.log("NEXT: "+state)
         if(state === 1) play();
         else if(state === 2) {
             if(data.length > currentStep + 1){ // There are more titles
@@ -106,12 +108,14 @@ const _graphic = (function() {
         } else handleError('Graphic cannot be advanced in state: '+state)
     }
     function stop() {
+        console.log("STOP: "+state)
         if(state === 2) {
             animateOut();
             state = 1;
         }
     }
     function reset() {
+        console.log("RESET: "+state)
         if(currentStep === 0) {
             handleError('The graphic is already on its first item');
             return;
@@ -137,6 +141,7 @@ const _graphic = (function() {
         addPlayoutCommand(animation);
     }
     function previous() {
+        console.log("PREVIOUS: "+state)
         if(currentStep > 0) { // We can go backwards
             let animation;
             if(state === 2) {
@@ -223,6 +228,7 @@ const _graphic = (function() {
     }
     // - For Play:
     function animateIn() {
+        console.log("-> Animate In")
         return new Promise((resolve, reject) => {
             const graphic = document.querySelector('.lt-style-one .graphic');
             const [pathLeft, pathRight] = graphic.querySelectorAll('svg path');
@@ -254,6 +260,7 @@ const _graphic = (function() {
         
     }
     function animateOut() {
+        console.log("-> Animate Out")
         return new Promise((resolve, reject) => {
             /* The same vas the animateIn function */
             const graphic = document.querySelector('.lt-style-one .graphic');
