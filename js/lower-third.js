@@ -55,7 +55,7 @@ function play() {
 
 
 function update(incomingChange) {
-    log(incomingChange)
+    // log(incomingChange)
     // obj_dict = Object.entries(JSON.parse(incomingChange))
     data = Object.assign({}, data, JSON.parse(incomingChange));
     const num = document.querySelector('.num')
