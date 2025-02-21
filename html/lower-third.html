@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>NULSCC</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="../css/lower-third.css">
+    </head>
+    <body>
+        <div style="font-weight: bold; color: #0073e6;white-space: pre-line;position:absolute; top: 0; left: 0;" id="log"></div>
+        <main class="graphic">
+            <div class="inner">
+                <div class="helper">
+                    <img class="logo " src="../media/logo-white-centered.png">
+                </div>
+                <div class="info">
+                    <div class="top">Oliver Smith</div>
+                    <div class="bottom">
+                        <span id="line1">University of Warwick</span><br>
+                        <span id="line2">Open Category • #2 in Qualifiers</span>
+                    </div>
+                </div>
+            </div>
+            <div class="num">
+                02
+            </div>
+        </main>
+        
+        <script src="../node_modules/gsap/dist/gsap.js"></script>
+        <script src="../js/lower-third.js"></script>
+        <script src="../js/dev.js"></script>
+        <script name="graphics-data-definition" type="application/json+gdd">
+            {
+                "$schema": "https://superflytv.github.io/GraphicsDataDefinition/gdd-meta-schema/v1/schema.json",
+                "title": "Lower Third",
+                "description": "woah",
+                "type": "object",
+                    "properties": {
+                        "p_number": {
+                          "type": "string",
+                          "label": "Number",
+                          "gddType": "single-line"
+                        },
+                        "p_name": {
+                          "type": "string",
+                          "label": "Name",
+                          "gddType": "single-line"
+                        },
+                        "p_info": {
+                          "type": "string",
+                          "label": "Info",
+                          "gddType": "single-line"
+                        },
+                        "uni_name": {
+                            "type": "string",
+                            "label": "uni_name",
+                            "gddType": "single-line"
+                        },
+                        "uni_logo": {
+                            "type": "string",
+                            "label": "uni_logo",
+                            "gddType": "single-line"
+                        },
+                        "uni_colour": {
+                            "type": "string",
+                            "label": "uni_colour",
+                            "gddType": "single-line"
+                        }
+                }
+            }
+        </script>
+    </body>
+</html>

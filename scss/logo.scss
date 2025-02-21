@@ -1,9 +1,7 @@
-/* SCSS File - lower-third.1.scss */
+/* SCSS File - logo.scss */
 
 body {
-    // background-color: ;
     background-color: transparent;
-    // display: flex;
     margin: 0;
 }
 
@@ -16,19 +14,10 @@ body {
     opacity: 0;
 }
 
-.overlay {
-    background: linear-gradient(#000, #000) no-repeat center/100% 2px,
-    linear-gradient(#000, #000) no-repeat center/2px 100%;
-    width: 100vw;
-    height: 100vh;
-    position: absolute;
-    z-index: 2;
-}
-
 .graphic {
     position: absolute;
     top: 46%;
-    transform:  translateY(-50%);// translateX(20%);
+    transform:  translateY(-50%);
     left: 50%;
 }
 
@@ -37,65 +26,18 @@ $fontsize:8.5vh;
     text-align: right;
     height: min-content;
     width: min-content;
-    // width: 0px;
     color: white;
     text-wrap: nowrap;
     overflow:hidden;
     white-space:pre;
     
     font-family: 'Pressio TEST';
-    // font-weight: bold;
     font-size: $fontsize;
     
-    // font-size-adjust: ex-height 8;
-    // padding-left: 1vw;
-    // padding-right: 3vw;
     margin-top: -2px;
     line-height: $fontsize*1.1;
     z-index: 0;
-    // Hide:
     pad: 0;
     opacity: 1;
     border-radius: 1.5%;
-    // width: 0;
 }
-
-// .lt-style-one {
-//     align-self: flex-end;
-//     display: inherit;
-//     padding: 4vh 4vw;
-//     // height: 50%;
-//     // position: relative;
-//     // text-align: center;
-//     background: blue;
-
-//     .graphic {
-//         display: grid;
-//         grid-template-columns: 1fr;
-//         grid-template-rows: 1fr min-content;
-//         position: absolute;
-//         left: 50%;
-//         top: 50%;
-//         background-color: red;
-
-//         // top:50%
-//     }
-//     .text-line {
-//         text-align: left;
-//         height: min-content;
-//         width: fit-content;
-//         color: white;
-        
-//         font-family: 'All Star BV';
-//         padding-left: 10px;
-//         padding-right: 15px;
-//         z-index: 0;
-//     }
-//     .img{
-//         position: absolute;
-//         top: 0;
-//         left:0;
-//         text-align: center;
-//         // z-index: 1;
-//     }
-// }

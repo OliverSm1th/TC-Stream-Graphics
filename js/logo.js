@@ -45,7 +45,7 @@ function prep() {
 
     state = 1
 }
-function play() {
+async function play() {
     if (state == 0) prep()
     if (state == 1) {
         // Play Animation
@@ -83,6 +83,7 @@ function animateIn() {
 
     })
 }
+
 function animateOut() {
     return new Promise((resolve, reject) => {
         const [...lines]   = document.querySelectorAll('.text-line')

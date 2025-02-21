@@ -1,15 +1,19 @@
 {
   "dependencies": {
     "gsap": "^3.12.7",
-    "inliner": "^1.13.1"
+    "inliner": "^1.13.1",
+    "mongodb": "^6.13.0"
   },
   "scripts": {
     "build": "inliner html/${npm_config_file}.html > build/${npm_config_file}.html",
     "server": "http-server -p8080 -c-1",
-    "sass": "sass --watch scss:css"
+    "sass": "sass --watch scss:css",
+    "tail": "npx @tailwindcss/cli -i ./html/${npm_config_file}.html -o ./css/${npm_config_file}.html --watch"
   },
   "devDependencies": {
     "http-server": "^14.1.1",
-    "sass": "^1.84.0"
+    "parcel": "^2.13.3",
+    "sass": "^1.84.0",
+    "tailwind": "^4.0.0"
   }
 }
