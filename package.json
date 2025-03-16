@@ -5,10 +5,10 @@
     "mongodb": "^6.13.0"
   },
   "scripts": {
-    "build": "inliner html/${npm_config_file}.html > build/${npm_config_file}.html",
-    "server": "http-server -p8080 -c-1",
-    "sass": "sass --watch scss:css",
-    "tail": "npx @tailwindcss/cli -i ./html/${npm_config_file}.html -o ./css/${npm_config_file}.html --watch"
+    "build": "find ${npm_config_file} -maxdepth 1 -name '*.html' | inliner > build/${npm_config_file}.html",
+    "server": "http-server -p 8080 -c-1",
+    "sass": "sass --watch .",
+    "tail": "file2=$(find ${npm_config_file} -maxdepth 1 -name '*.css' | sed 's/\\.css$//1'); npx @tailwindcss/cli -i ${file2}.css -o ${file2}-build.css --watch"
   },
   "devDependencies": {
     "http-server": "^14.1.1",
