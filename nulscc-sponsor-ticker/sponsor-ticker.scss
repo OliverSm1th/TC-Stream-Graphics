@@ -5,9 +5,10 @@ body {
     margin: 0;
 }
 
-
-$img_height:10vh;
-$fontsize:2.5vh;
+$size:1;
+$img_height:8vh *$size;
+$img_width: 10vw *$size;
+$f_size:    1vmax*$size;
 $b_radius:3px;
 
 .graphic {
@@ -20,7 +21,6 @@ $b_radius:3px;
     opacity: 0;
     
     height: max-content;
-    // display: flex;
     flex-direction: column;
 }
 
@@ -39,7 +39,7 @@ $b_radius:3px;
     color: white;
     font-family: 'Poppins';
     font-weight: 600;
-    font-size: $fontsize;
+    font-size: $f_size;
     border-radius: $b_radius $b_radius 0 0;
 }
 
@@ -52,8 +52,8 @@ $b_radius:3px;
     // flex-grow: 1;
     border-radius: 0 0 $b_radius $b_radius;
     overflow: hidden;
-    height: 0;
-    width: 10vw;
+    height: $img_height;
+    width: $img_width;
 };
 // .graphic .logo:empty {
 //     padding: 0;
@@ -65,8 +65,9 @@ $b_radius:3px;
     // height: min-content;
     // max-height:15vh;
     // max-width:10vw;
+    max-width:95%;
     max-height:90%;
-    max-width:90%;
+    
     // height: 4vh;
     // max-height: 4vw;
     // max-width: 10vh;

@@ -1,49 +1,11 @@
-let state = 1
+let state = 0
 gsap.registerPlugin(TextPlugin);
 
 
-// const images = [
-//     "../media/sponsors/A_CAC.png",
-//     "../media/sponsors/B_ Banana Moon.png",
-//     "../media/sponsors/B_ Happy Idiot.png",
-//     "../media/sponsors/B_ Lattice.png",
-//     "../media/sponsors/C_ ClimbEquip.png",
-//     "../media/sponsors/C_ DMM.png",
-//     "../media/sponsors/C_ LaSportiva.png",
-//     "../media/sponsors/C_ Lockwoods.png",
-//     "../media/sponsors/C_ Scarpa.png",
-//     "../media/sponsors/D_ Black Diamond.png",
-//     "../media/sponsors/D_ Gekco.png",
-//     "../media/sponsors/D_ ProcessPhysio.png",
-//     "../media/sponsors/D_ Shoechalk.png",
-//     "../media/sponsors/X_ TechCrew.png",
-//     "../media/sponsors/X_ Warwick.png",
-//     "../media/sponsors/X_ WUCC.png",
-// ]
-// const images = [
-//     "A_CAC.png",
-//     "B_ Banana Moon.png",
-//     "B_ Happy Idiot.png",
-//     "B_ Lattice.png",
-//     "C_ ClimbEquip.png",
-//     "C_ DMM.png",
-//     "C_ LaSportiva.png",
-//     "C_ Lockwoods.png",
-//     "C_ Scarpa.png",
-//     "D_ Black Diamond.png",
-//     "D_ Gekco.png",
-//     "D_ ProcessPhysio.png",
-//     "D_ Shoechalk.png",
-//     "X_ TechCrew.png",
-//     "X_ Warwick.png",
-//     "X_ WUCC.png",
-// ]
-const img_num = 17
-// const images_path = "~/Documents/Education/3.Warwick University/TC/NULSCC/Sponsors/"
+const img_num = 5
 const delay = 6000
 const logo_opacity = '80%'
-const logo_height = '10vh'
-
+let logo_height = 0
 
 let cur_i = -1;
 let interval;
@@ -52,6 +14,13 @@ let nextTitle = "Sponsors"
 let nextImg = "";
 
 function play() {
+    if (state == 0) {
+        const graphic_helper = document.querySelector('.graphic .helper')
+        logo_height = graphic_helper.clientHeight
+        state = 1
+        graphic_helper.style.height = '0'
+        console.log(logo_height)
+    }
     if (state == 1) {
         animateIn()
         state = 2
@@ -70,12 +39,12 @@ function animateIn() {
         const desc = document.querySelector('.graphic .desctxt')
         desc.textContent = nextTitle; curTitle = nextTitle
         const t1  = new gsap.timeline({ease: 'power1.in', onComplete: resolve});
-        t1.to(graphic, {opacity: 1})
+        t1.set(graphic, {height: 0})
+        .to(graphic, {opacity: 1})
         .from(graphic, {
-            y: '-8vh',
+            y: `-${logo_height}`,
             duration: .5,
         })
-        
         .to(l_help, {
             height:logo_height,
             duration: .3
@@ -121,20 +90,13 @@ function nextLogo() {
     console.log(imgId)
     template = document.getElementById(imgId)
     nextImg = template.src
-    if (cur_i == 14) {
+    if (cur_i == 2) {
         nextTitle = "Stream by"
-    } else if(cur_i > 14) {
+    } else if(cur_i > 2) {
         nextTitle = "Supported by"
     } else {
         nextTitle = "Sponsors"
     }
-    // if (images[cur_i].includes("TechCrew")) {
-    //     nextTitle = "Stream by"
-    // } else if(images[cur_i].startsWith("X_ ")) {
-    //     nextTitle = "Supported by"
-    // } else {
-    //     nextTitle = "Sponsors"
-    // }
 }
 
 function logoIn() {

@@ -5,16 +5,18 @@ body {
     margin: 0;
 }
 
-$b_radius:3px;
-$height:13vh;
-$top_f_size:6vh;
-$bot_f_size:2vh;
-$num_f_size:4vh;
+$size:1;
+$b_radius:  3px *$size;
+$height:    13vh*$size;
+$top_f_size:6vh *$size;
+$bot_f_size:2vh *$size;
+$num_f_size:6vh *$size;
+$start_col:#B43939;
 
 .graphic {
     overflow: hidden;
     border-bottom: solid calc($height/15);
-    border-bottom-color:#b93434cc;
+    border-bottom-color:$start_col;
     position: absolute;
     bottom: 0;
     left: 0;
@@ -43,16 +45,16 @@ $num_f_size:4vh;
 .graphic .num {
     writing-mode: vertical-lr;
     width: fit-content;
-    font-size: 6vh;
-    line-height: 5.5vh;
+    font-size: $num_f_size;
+    line-height: $num_f_size*1.1;
     border-radius: 0 $b_radius 0 0;
     // font-family: 'Pressio TEST';
     font-family: 'Poppins';
     font-weight: 800;
     color: #ffffffe7;
     padding-top: 0.8vh;
-
-    background-color: #b93434cc;
+    
+    background-color: $start_col;
 }
 
 
@@ -81,7 +83,7 @@ $num_f_size:4vh;
 .info {
     padding: 15px;
     padding-left: 5px;
-    color: #B43939;
+    color: $start_col;
 }
 
 .top {
@@ -98,7 +100,7 @@ $num_f_size:4vh;
     font-weight: 600;
     font-size: $bot_f_size;
 
-    line-height: 2.5vh;
+    line-height: $bot_f_size*1.05;
 
 }
 

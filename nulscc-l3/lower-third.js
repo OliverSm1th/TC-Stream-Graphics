@@ -1,7 +1,9 @@
-let state = 1
+let state = 0
 let data = {}
 // console.log(g_width)
 
+let g_height = 0;
+let g_width = 0;
 
 let first_line=true
 function log(msg) {
@@ -11,8 +13,38 @@ function log(msg) {
     document.getElementById('log').textContent += String(msg)
 }
 
+// window.onload = function() {
+//     params_str = window.location.search
+//     if (params_str.length == 0) return
+//     params_str = params_str.substring(1)
+//     params = {}
+//     params_str.split('&').forEach(param => {
+//         let [k, v] = params_str.split('=')
+//         params[k] = v
+//     });
+
+//     if (!"debug" in params) return
+
+//     if (params["debug"] == "update") {
+//         devClasses = ["CONTROLS", "PLAY", "NEXT", "STOP"]
+//         console.log("UPDATE!!")
+//         devClasses.forEach((devClass => {
+//             let devCur = document.getElementsByClassName(`DEV-WIDGET-${devClass}`)[0]
+//             console.log(devCur)
+//             devCur.style.display = 'none'
+//         }))
+//         document.getElementsByClassName(`DEV-WIDGET-OPEN`)[0].style.display = ""
+//     }
+// }
+
 
 function play() {
+    if (state == 0) {
+        const graphic = document.querySelector('.graphic')
+        g_height = graphic.clientHeight
+        g_width = graphic.clientWidth
+        state = 1
+    }
     if (state == 1) {
         animateIn()
         state = 2
@@ -21,37 +53,6 @@ function play() {
         state = 1
     }
 }
-
-// async function getUniInfo(uni_id) {
-//     let result = await new Promise(function(resolve, reject) {
-//         var xhr = new XMLHttpRequest();
-//         xhr.withCredentials = false;
-//         xhr.open("GET", "https://nullsccpeople-5603.restdb.io/rest/universities/"+uni_id);
-//         xhr.setRequestHeader("content-type", "application/json");
-//         xhr.setRequestHeader("x-apikey", "67b87527967a7fca0ab4d797");
-//         xhr.setRequestHeader("cache-control", "no-cache");
-
-//         xhr.onload = function () {
-//             if (this.status >= 200 && this.status < 300) {
-//                 resolve(xhr.responseText);
-//             } else {
-//                 reject({
-//                     status: this.status,
-//                     statusText: xhr.statusText
-//                 });
-//             }
-//         };
-//         xhr.onerror = function () {
-//             reject({
-//                 status: this.status,
-//                 statusText: xhr.statusText
-//             });
-//         };
-
-//         xhr.send(null);
-//     })
-//     log(result)
-// }
 
 
 function update(incomingChange) {
@@ -80,6 +81,8 @@ function update(incomingChange) {
     const info = document.querySelector('.info')
     info.style.color = col
     graphic.style.width = "max-content"
+
+    g_width = graphic.clientWidth;
 }
 
 // https://stackoverflow.com/a/32589289
@@ -98,9 +101,6 @@ function titleCase(str) {
 function animateIn() {
     return new Promise((resolve, reject) => {
         const graphic = document.querySelector('.graphic')
-        const g_height = graphic.clientHeight
-        const g_width = graphic.clientWidth
-
         const t1  = new gsap.timeline({ease: 'power1.in', onComplete: resolve});  
         console.log(g_height) 
         t1.set(graphic, {
@@ -125,6 +125,9 @@ function animateOut() {
         })
         .to(graphic, {
             width: 0
+        })
+        .set(graphic, {
+            opacity: 0
         })
     })
 }
