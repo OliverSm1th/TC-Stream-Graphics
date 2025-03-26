@@ -5,11 +5,11 @@ body {
     margin: 0;
 }
 
-$size:1;
+$size:2.5;
 $b_radius:  3px *$size;
 $height:    13vh*$size;
-$top_f_size:6vh *$size;
-$bot_f_size:2vh *$size;
+$top_f_size:4.5vh *$size;
+$bot_f_size:3vh *$size;
 $num_f_size:6vh *$size;
 $start_col:#B43939;
 
@@ -48,7 +48,7 @@ $start_col:#B43939;
     font-size: $num_f_size;
     line-height: $num_f_size*1.1;
     border-radius: 0 $b_radius 0 0;
-    // font-family: 'Pressio TEST';
+    // font-family: 'Pressio TEST';   // Font used for event
     font-family: 'Poppins';
     font-weight: 800;
     color: #ffffffe7;
@@ -66,61 +66,37 @@ $start_col:#B43939;
     
     height: $height;
     width: $height;
-    // width: 10vw;
 }
 
 .graphic .logo {
     max-width: 90%;
     max-height: 90%;
-    // position: relative;
-    // left: 0%;
-    // transform: translateX(-70%);
-    // height: 20vh;
-    // z-index: 1;
-    // opacity: 0;
 }
 
 .info {
     padding: 15px;
     padding-left: 5px;
+    padding-right: 15px*$size;
     color: $start_col;
+    flex: auto;
 }
 
 .top {
     width: max-content;
-    padding-bottom: 0.1vh;
-    font-family: 'Pressio TEST';
+    font-family: 'Bevan', serif;
+    font-weight: 800;
+    font-style: normal;
     font-size: $top_f_size;
-    // letter-spacing: 0.05vw;
     text-transform: uppercase;
+    line-height: $top_f_size *1.05;
+    padding-bottom: 2vh;
+    flex-grow: 0;
 }
 .bottom {
     width: max-content;
     font-family: 'Poppins';
     font-weight: 600;
     font-size: $bot_f_size;
-
     line-height: $bot_f_size*1.05;
-
+    flex-grow: 1;
 }
-
-// $fontsize:8.5vh;
-// .top {
-//     text-align: right;
-//     height: min-content;
-//     width: min-content;
-//     color: white;
-//     text-wrap: nowrap;
-//     overflow:hidden;
-//     white-space:pre;
-    
-//     font-family: 'Pressio TEST';
-//     font-size: $fontsize;
-    
-//     margin-top: -2px;
-//     line-height: $fontsize*1.1;
-//     z-index: 0;
-//     pad: 0;
-//     opacity: 1;
-//     border-radius: 1.5%;
-// }

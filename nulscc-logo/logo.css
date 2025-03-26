@@ -28,10 +28,14 @@ body {
   text-wrap: nowrap;
   overflow: hidden;
   white-space: pre;
-  font-family: "Pressio TEST";
+  font-family: "Oswald", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  letter-spacing: -0.3vh;
   font-size: 8.5vh;
   margin-top: -2px;
-  line-height: 9.35vh;
+  line-height: 8.925vh;
   z-index: 0;
   pad: 0;
   opacity: 1;

@@ -2,10 +2,10 @@ let state = 0
 gsap.registerPlugin(TextPlugin);
 
 
-const img_num = 5
-const delay = 6000
-const logo_opacity = '80%'
-let logo_height = 0
+const IMG_NUM = 5
+const DELAY = 6000
+const IMG_OPACITY = '80%'
+let img_height = 0
 
 let cur_i = -1;
 let interval;
@@ -16,10 +16,10 @@ let nextImg = "";
 function play() {
     if (state == 0) {
         const graphic_helper = document.querySelector('.graphic .helper')
-        logo_height = graphic_helper.clientHeight
+        img_height = graphic_helper.clientHeight
         state = 1
         graphic_helper.style.height = '0'
-        console.log(logo_height)
+        console.log(img_height)
     }
     if (state == 1) {
         animateIn()
@@ -42,15 +42,15 @@ function animateIn() {
         t1.set(graphic, {height: 0})
         .to(graphic, {opacity: 1})
         .from(graphic, {
-            y: `-${logo_height}`,
+            y: `-${img_height}`,
             duration: .5,
         })
         .to(l_help, {
-            height:logo_height,
+            height:img_height,
             duration: .3
         })
         .add( logoIn, 1)
-    }).then(() => {interval = setInterval(nextLogoIn, delay)})
+    }).then(() => {interval = setInterval(nextLogoIn, DELAY)})
 }
 function animateOut() {
     return new Promise((resolve, reject) => {
@@ -85,18 +85,17 @@ function animateOut() {
 
 
 function nextLogo() {
-    cur_i = (cur_i+1)%img_num;
+    cur_i = (cur_i+1)%IMG_NUM;
     imgId = `img-${cur_i}`
     console.log(imgId)
     template = document.getElementById(imgId)
     nextImg = template.src
-    if (cur_i == 2) {
+    if (cur_i == 2)
         nextTitle = "Stream by"
-    } else if(cur_i > 2) {
+    else if(cur_i > 2)
         nextTitle = "Supported by"
-    } else {
+    else
         nextTitle = "Sponsors"
-    }
 }
 
 function logoIn() {
@@ -114,7 +113,7 @@ function logoIn() {
         x: 0,
     },'start')
     .to(logo, {
-        opacity: logo_opacity
+        opacity: IMG_OPACITY
     },'start')
 
     if (nextTitle == curTitle) return

@@ -5,12 +5,12 @@ body {
 
 .graphic {
   overflow: hidden;
-  border-bottom: solid 0.8666666667vh;
+  border-bottom: solid 2.1666666667vh;
   border-bottom-color: #B43939;
   position: absolute;
   bottom: 0;
   left: 0;
-  height: 13vh;
+  height: 32.5vh;
   flex-direction: row;
   width: max-content;
   opacity: 0;
@@ -22,7 +22,7 @@ body {
 }
 
 .graphic .inner {
-  border-radius: 3px 0 0 0;
+  border-radius: 7.5px 0 0 0;
   background-color: rgba(241, 241, 241, 0.8);
   height: 100%;
   width: max-content;
@@ -34,9 +34,9 @@ body {
 .graphic .num {
   writing-mode: vertical-lr;
   width: fit-content;
-  font-size: 6vh;
-  line-height: 6.6vh;
-  border-radius: 0 3px 0 0;
+  font-size: 15vh;
+  line-height: 16.5vh;
+  border-radius: 0 7.5px 0 0;
   font-family: "Poppins";
   font-weight: 800;
   color: rgba(255, 255, 255, 0.9058823529);
@@ -48,9 +48,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 0 0 3px 3px;
-  height: 13vh;
-  width: 13vh;
+  border-radius: 0 0 7.5px 7.5px;
+  height: 32.5vh;
+  width: 32.5vh;
 }
 
 .graphic .logo {
@@ -61,23 +61,30 @@ body {
 .info {
   padding: 15px;
   padding-left: 5px;
+  padding-right: 37.5px;
   color: #B43939;
+  flex: auto;
 }
 
 .top {
   width: max-content;
-  padding-bottom: 0.1vh;
-  font-family: "Pressio TEST";
-  font-size: 6vh;
+  font-family: "Bevan", serif;
+  font-weight: 800;
+  font-style: normal;
+  font-size: 11.25vh;
   text-transform: uppercase;
+  line-height: 11.8125vh;
+  padding-bottom: 2vh;
+  flex-grow: 0;
 }
 
 .bottom {
   width: max-content;
   font-family: "Poppins";
   font-weight: 600;
-  font-size: 2vh;
-  line-height: 2.1vh;
+  font-size: 7.5vh;
+  line-height: 7.875vh;
+  flex-grow: 1;
 }
 
 /*# sourceMappingURL=lower-third.css.map */

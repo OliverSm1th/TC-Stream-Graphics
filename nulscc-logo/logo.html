@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <!-- Build:
+         npm run build -file=nulscc-logo -- --skip-absolute-urls -->
         <meta charset="utf-8">
         <title>NULSCC Logo</title>
         <meta name="description" content="An animated version of the NULSCC logo">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="logo.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
     </head>
-    <body>
-        <div style="font-weight: bold; color: #0073e6;white-space: pre-line;position:absolute; top: 0; left: 0;" id="log"></div>
+<body>
         <main class="lt-style-one">
             <img class="logo" src="logo-white-centered.png">
             <div class="graphic"></div>
@@ -16,6 +20,6 @@
         
         <script src="../node_modules/gsap/dist/gsap.js"></script>
         <script src="logo.js"></script>
-        <script src="../dev.js"></script>
+        <!-- <script src="../dev.js"></script> -->
     </body>
 </html>

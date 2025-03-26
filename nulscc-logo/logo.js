@@ -1,20 +1,19 @@
 'use strict';
 
-// logo.js
 let state = 0;
 // 0 = loading | 1  = ready to be played | 2 = has been played
 let widths = [];
 
 window['play'] = play;
 
-const lines = [
+const LINES = [
 " National",
 "Universities",
 "Lead and Speed",
 "  Climbing",
-"        Championships"
+"      Championships"
 ]
-const colours = [
+const COLOURS = [
     "#8C0009",
     "#CE180B",
     "#A80000",
@@ -22,32 +21,39 @@ const colours = [
     "#A80000"
 ]
 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 
-function prep() {
+
+async function prep() {
     const graphic = document.querySelector('.lt-style-one .graphic');
     let template = document.createElement("div")
     template.className = "text-line"
-    lines.forEach((line, i) => {
-        let line_elem = template.cloneNode()
-        line_elem.style.backgroundColor = colours[i]//((i%2) == 1) ? "#A80000" : "#8C0009"
-        line_elem.appendChild(document.createTextNode(line))
+    LINES.forEach((line, i) => {
+        let line_elem = template.cloneNode();
+        line_elem.style.backgroundColor = COLOURS[i];
+        line_elem.style.opacity = 0;
+        line_elem.appendChild(document.createTextNode(line));
         
-        graphic.appendChild(line_elem)
+        graphic.appendChild(line_elem);
     } )
-    const [...linesElem]   = document.querySelectorAll('.text-line')
-    linesElem.forEach((line) => {
-        widths.push(line.offsetWidth)
+    sleep(10).then(() => {   // Wait for elements to be loaded
+        const [...linesElem]   = document.querySelectorAll('.text-line')
+        linesElem.forEach((line) => {
+            widths.push(line.offsetWidth)
+        })
+        new gsap.set(linesElem, {
+            width: 0,
+            opacity: 1
+        })
+        state = 1
     })
-    new gsap.set(linesElem, {
-        width: 0,
-        opacity: 1
-    })
-
-    state = 1
+    
 }
 async function play() {
-    if (state == 0) prep()
-    if (state == 1) {
+    if (state == 0) return
+    else if (state == 1) {
         // Play Animation
         animateIn()
         state=2
@@ -106,10 +112,6 @@ function animateOut() {
         .set(lines, {opacity: 1}, 0.6)
     });
 }
-let first_line=true
-function log(msg) {
-    if (!first_line) msg = "\n"+msg
-    else first_line = false
 
-    document.querySelector('#log').textContent += msg
-}
+// Prepare the elements:
+prep()

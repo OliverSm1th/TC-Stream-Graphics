@@ -31,11 +31,15 @@ $fontsize:8.5vh;
     overflow:hidden;
     white-space:pre;
     
-    font-family: 'Pressio TEST';
+    font-family: "Oswald", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    letter-spacing: -0.3vh;
+
     font-size: $fontsize;
-    
     margin-top: -2px;
-    line-height: $fontsize*1.1;
+    line-height: $fontsize*1.05;
     z-index: 0;
     pad: 0;
     opacity: 1;
