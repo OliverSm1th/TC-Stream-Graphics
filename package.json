@@ -1,18 +1,17 @@
 {
   "dependencies": {
-    "gsap": "^3.12.7",
-    "inliner": "^1.13.1",
-    "mongodb": "^6.13.0"
+    "inliner": "^1.13.1"
   },
   "scripts": {
     "build": "file2=$(find ${npm_config_file} -maxdepth 1 -name '*.html'); inliner $file2 > build/$(basename ${npm_config_file}).html",
+    "build-help": "inliner --help",
     "server": "http-server -p 8080 -c-1",
-    "sass": "sass --watch .",
+    "scss": "sass --watch .",
     "tail": "file2=$(find ${npm_config_file} -maxdepth 1 -name '*.css' | sed 's/\\.css$//1'); npx @tailwindcss/cli -i ${file2}.css -o ${file2}-build.css --watch"
   },
   "devDependencies": {
+    "gsap": "^3.12.7",
     "http-server": "^14.1.1",
-    "parcel": "^2.13.3",
     "sass": "^1.84.0",
     "tailwind": "^4.0.0"
   }
