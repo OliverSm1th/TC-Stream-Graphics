@@ -38,7 +38,7 @@ async function prep() {
         
         graphic.appendChild(line_elem);
     } )
-    sleep(10).then(() => {   // Wait for elements to be loaded
+    sleep(100).then(() => {   // Wait for elements to be loaded
         const [...linesElem]   = document.querySelectorAll('.text-line')
         linesElem.forEach((line) => {
             widths.push(line.offsetWidth)
