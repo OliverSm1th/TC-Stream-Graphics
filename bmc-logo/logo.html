@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <!-- To build: 
+    -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="logo.css">
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@100..900&display=swap" rel="stylesheet">
+    </head>
+    <body class="h-screen flex items-center justify-center">
+        <div class="outer flex items-center justify-center relative bg-[#CD1719] p-3" style="opacity: 0;">
+            <div class="graphic h-36 w-[500px] overflow-x-hidden relative">
+                <div class="h-36 w-36 bg-white absolute left-0 overflow-hidden z-10">
+                    <div class="triangle w-30 bg-[#CD1719] absolute -bottom-0.5 -left-0"></div>
+                    <div class="triangle2 w-42 bg-[#CD1719] absolute -bottom-0.5 left-8"></div>
+                </div>
+                <!-- -->
+                <div class="title font-black absolute top-1/2 -translate-y-1/2 text-center  right-0 overflow-hidden text-white z-0">
+                    BMC
+                </div>
+            </div>
+            
+        </div>
+        
+    </body>
+    <script src="../node_modules/gsap/dist/gsap.js"></script>
+    <script src="logo.js"></script>
+    <script src="../dev.js"></script>
+</html>

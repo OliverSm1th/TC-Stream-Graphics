@@ -1,38 +1,47 @@
 <!DOCTYPE html>
 <html>
     <!-- To build: 
-     npm run build -file=nulscc-l3 -- --skip-absolute-urls 
+     npm run build -file=bmc-l3 -- --skip-absolute-urls 
     -->
     <head>
         <meta charset="utf-8">
-        <title>NULSCC</title>
+        <title>BMC</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="lower-third.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Bevan:ital@0;1&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    </head>
+        <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+</head>
     <body>
         <!-- <div style="font-weight: bold; color: #0073e6;white-space: pre-line;position:absolute; top: 0; left: 0;" id="log"></div> -->
+        <!-- <img src="NULSCC2025-Speed.png" style="height: 100%; z-index: -1; position: absolute;"/> -->
         <main class="graphic">
+            
             <div class="inner">
                 <div class="helper">
-                    <img class="logo" src="logo-white-centered.png">
+                    <img class="logo" src="">
                 </div>
                 <div class="info">
-                    <div class="top">Competitor</div>
+                    <div class="top">Oliver Smith</div>
                     <div class="bottom">
-                        <span id="line1">University</span><br>
-                        <span id="line2">Competitor Info</span>
+                        <div id="line1"></div>
+                        <div id="line2">
+                        </div>
                     </div>
+                    
                 </div>
             </div>
             <div class="num">
-                02
+                Lane A
             </div>
         </main>
-
+        <div id="l2-template" class="tag" style="opacity: 0;">
+            <div class="tag-item">
+                TIME: 5.55
+            </div>
+            
+        </div>
         </div>
         
         <script src="../node_modules/gsap/dist/gsap.js"></script>
@@ -63,19 +72,19 @@
                           "label": "Info",
                           "gddType": "single-line"
                         },
-                        "uni_name": {
+                        "p_tags": {
                             "type": "string",
-                            "label": "uni_name",
+                            "label": "tags",
                             "gddType": "single-line"
                         },
-                        "uni_logo": {
+                        "logo": {
                             "type": "string",
-                            "label": "uni_logo",
+                            "label": "logo",
                             "gddType": "single-line"
                         },
-                        "uni_colour": {
+                        "colour": {
                             "type": "string",
-                            "label": "uni_colour",
+                            "label": "colour",
                             "gddType": "single-line"
                         }
                 }

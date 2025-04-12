@@ -1,0 +1,17 @@
+
+.triangle {
+    aspect-ratio: 1/cos(48deg);
+    clip-path: polygon(50% 0,100% 100%,0 100%);
+}
+.triangle2 {
+    aspect-ratio: 1/cos(48deg);
+    clip-path: polygon(50% 0,100% 100%,0 100%);
+}
+.title {
+    font-family: "Commissioner", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 900;
+    font-style: normal;
+    line-height: 144px;
+    font-size: 144px;
+}
