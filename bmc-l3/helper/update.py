@@ -1,3 +1,8 @@
+# BUGS:
+# - Problem with the previous time - didn't want to work :(
+# - Sometimes showed an empty graphic for some reason
+# - Doesn't remove the tags when it switches to a new participant, has to be manually removed using _g 1 etc
+
 from random import randint
 import requests
 import json
