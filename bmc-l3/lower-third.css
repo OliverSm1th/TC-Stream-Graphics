@@ -9,7 +9,7 @@ body {
   border-bottom-color: rgba(196, 23, 51, 0.8);
   position: absolute;
   bottom: 0;
-  right: 0;
+  left: 0;
   height: 18.2vh;
   flex-direction: row;
   width: fit-content;
