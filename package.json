@@ -3,11 +3,16 @@
     "inliner": "^1.13.1"
   },
   "scripts": {
-    "build": "file2=$(find ${npm_config_file} -maxdepth 1 -name '*.html'); inliner $file2 > build/$(basename ${npm_config_file}).html",
-    "build-help": "inliner --help",
+    "build": "file2=$(find ${npm_config_file} -maxdepth 1 -name '*.html'); inliner $file2 > build/$(sed 's\/\\/\/-\/g' <<< ${npm_config_file}).html",
     "server": "http-server -p 8080 -c-1",
-    "scss": "sass --watch .",
+    "sass": "sass --watch .",
     "tail": "file2=$(find ${npm_config_file} -maxdepth 1 -name '*.css' | sed 's/\\.css$//1'); npx @tailwindcss/cli -i ${file2}.css -o ${file2}-build.css --watch"
+  },
+  "scriptsComments": {
+    "build": "Compress the graphic files to a single .html file for usage. Requires a build/ folder",
+    "server": "Startup a basic http server for use during development",
+    "sass": "If using scss files (fancy css), automatically convert them to css",
+    "tail": "If using tailwind, automatically build a css file"
   },
   "devDependencies": {
     "gsap": "^3.12.7",
