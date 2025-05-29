@@ -41,28 +41,27 @@ function animateIn() {
         t_l.set(t2, {width: 0})
         t_l.set(graphic, {width: 0})
         t_l.set(outer, {padding: 0, opacity: 1})
+        // Animate In:
         t_l.to(graphic, {
             width: g_height,
             duration: .5
-        }, 'start')
+        }, 'start')             // White bg square (for triangles)
         
         t_l.to(t1, {
             width: t_width[0],
-            duration: .4}, .5)
+            duration: .4}, .5)  // Red triangle 1
         t_l.to(t2, {
             width: t_width[1],
-            duration: .5}, .7)
+            duration: .5}, .7)  // Red triangle 2
         t_l.to(graphic, {
                 width: g_width,
                 duration: .5
-            }, 1.4)
+            }, 1.4)             // Red bg rect + BMC text
         t_l.to(outer, {
             padding: 12,
             duration: .8,
             ease: 'elastic.out(1.2,0.75)'
-        }, 1.8)
-        
-        
+        }, 1.8)                 // Red bg padding (elastic ease to make it 'pop')        
     })
 }
 function animateOut() {
