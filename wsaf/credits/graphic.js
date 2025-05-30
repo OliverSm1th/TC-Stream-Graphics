@@ -1,4 +1,9 @@
 let state = 0
+let data = {}
+
+let g_height = 0;
+let g_width = 0;
+let t_width = [0,0];
 
 function play() {
     if (state == 0) {

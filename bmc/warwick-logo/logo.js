@@ -70,8 +70,8 @@ function animateIn() {
         t_l.to(smalltitle, {
             opacity: 1,
             scale: 1,
-            ease: 'elastic.out(1.2,0.75)',
-            duration: 0.5
+            // ease: 'elastic.out(1.2,0.75)',
+            duration: 0.2
         })
         
         

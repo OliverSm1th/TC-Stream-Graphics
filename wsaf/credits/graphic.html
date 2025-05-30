@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <!-- To build: 
+     npm run build -file=wsaf/[folder_name] -- --skip-absolute-urls
+    -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="graphic-build.css">
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>   <!--Tailwind-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">         <!--Google Font-->
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+    </head>
+    <div>
+        <img src="../fab-drone.jpg" style="width: 100%; z-index: -1; position: absolute;"/>
+        <main class="h-screen flex items-center justify-start font-[Lexend]">
+            <div class="min-w-1/4 w-fit bg-[#4f1d75D5] h-full flex flex-col items-center text-center py-5 px-2 gap-5">
+                <div class="w-fit min-w-1/2 bg-[#ffbd00] text-[#4f1d75] px-7 py-0.5 mt-6 text-4xl font-bold box-shadow">
+                    Tech
+                </div>
+                <div class="px-5 text-3xl">
+                    <div class="text-[#ffbd00] font-bold">
+                        Lighting Designer
+                    </div>
+                    <div class="text-white">
+                        Makka Pakka
+                    </div>
+                </div>
+                <div class="px-5 text-3xl">
+                    <div class="text-[#ffbd00] font-bold">
+                        Sound Designer
+                    </div>
+                    <div class="text-white">
+                        Makka Pakka
+                    </div>
+                </div>
+                <div class="px-5 text-3xl">
+                    <div class="text-[#ffbd00] font-bold">
+                        Camera Operators
+                    </div>
+                    <div class="text-white grid grid-cols-2 gap-2">
+                        <span>Adam Skrzymowski</span>
+                        <span>Caleb Tan</span>
+                        <span>Jonathan Ord</span>
+                        <span>Olivia Gielen</span>
+                        <span>Tara Fahey</span>
+                    </div>
+                </div>
+                <div class="px-5 text-3xl pt-5">
+                    <div class="text-white font-bold pb-1">
+                        Supported by
+                    </div>
+                    <div class="text-white grid grid-rows-1 gap-2 justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="156.957 -60.433 131.74 202.173" class="h-30">
+                            <g transform="matrix(1, 0, 0, 1, 169.348007, -48.041496)">
+                              <circle fill="#FFC700" cx="53.229" cy="16.054" r="21" style="stroke-width: 1px; transform-origin: 53.229px 16.054px 0px;"></circle>
+                              <circle fill="#FFC700" cx="17.229" cy="52.054" r="21" style="stroke-width: 1px;"></circle>
+                              <circle fill="#3A7DFF" cx="53.229" cy="90.054" r="21" style="stroke-width: 1px;"></circle>
+                              <circle fill="#3A7DFF" cx="89.729" cy="126.554" r="21" style="stroke-width: 1px;"></circle>
+                            </g>
+                            <text style="fill: rgb(255, 255, 255); font-size: 35px; font-weight: 700; text-anchor: middle; white-space: pre;" x="222.827" y="134.433">UWCS</text>
+                          </svg>
+                    </div>
+                </div>
+                
+            </div>
+        </main>
+    </div>
+    <script src="graphic.js"></script>
+    <script src="../../node_modules/gsap/dist/gsap.js"></script>  <!--GSAP (animation library for .js code)-->
+    <script src="../../dev.js"></script>    <!--Allows for easy debugging (add ?debug=true to url when using the http server)-->
+</html>
