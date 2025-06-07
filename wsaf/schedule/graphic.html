@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <!-- To build: 
+     npm run build -file=wsaf/[folder_name] -- --skip-absolute-urls
+    -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="graphic-build.css">
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>   <!--Tailwind-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">         <!--Google Font-->
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+    </head>
+    <body class="border-gray-700 border-5 h-screen font-[Lexend]">
+        <img src="../fab-drone.jpg" style="width: 100%; z-index: -1; position: absolute; height: 100%; object-fit: cover;"/>
+        <main class="flex items-center w-full  justify-end">
+             <div class="flex flex-col py-20 gap-5">
+                <div id="title-box" class="bg-[#087f8c] min-w-[650px] flex flex-row text-[25px] py-2 px-3 box-shadow-lg align-middle">
+                    <div id="title" class="uppercase font-bold text-white min-w-44">
+                        Up Next
+                    </div>
+                    <div id="subtitle" class="text-[#FFBD00] grow font-medium">
+                        Benefactors Place
+                    </div>
+                </div>
+                <div id="events" class="flex flex-col gap-2">
+
+                </div>
+                <template id="event-template">
+                    <div class="text-[#3B82F6] px-2" id="event">
+                    <div id="event-time" class="bg-white font-bold -rotate-2 px-2 absolute text-lg box-shadow">
+                        00:00-00:00
+                    </div>
+                    <div id="event-box" class="bg-white px-3 pt-5 pb-1 flex flex-col mx-4 mt-3 box-shadow-lg">
+                        <div id="event-name" class="font-bold text-xl">
+                            Event Title
+                        </div>
+                        <div class="flex flex-row gap-2 text-base">
+                            <div id="event-by">
+                                Tag 1
+                            </div>
+                            <div class="font-bold">
+                                ·
+                            </div>
+                            <div class="flex flex-row  items-center gap-1">
+                                <svg class="h-[14px] w-fit" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 520">
+                                    <path fill="#3b82f6" d="M499.1 6.3c8.1 6 12.9 15.6 12.9 25.7l0 72 0 264c0 44.2-43 80-96 80s-96-35.8-96-80s43-80 96-80c11.2 0 22 1.6 32 4.6L448 147 192 223.8 192 432c0 44.2-43 80-96 80s-96-35.8-96-80s43-80 96-80c11.2 0 22 1.6 32 4.6L128 200l0-72c0-14.1 9.3-26.6 22.8-30.7l320-96c9.7-2.9 20.2-1.1 28.3 5z"/>
+                                </svg>
+                                Music
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </template>
+                <!-- <div id="event" class="text-[#3B82F6] px-2">
+                    <div id="event-time" class="bg-white font-bold -rotate-2 px-2 absolute text-lg box-shadow">
+                        6:30-7pm
+                    </div>
+                    <div id="event-box" class="bg-white px-3 pt-5 pb-1 flex flex-col mx-4 mt-3 box-shadow-lg">
+                        <div id="event-name" class="font-bold text-xl">
+                            From Stage to Screen with Symphonic Brass
+                        </div>
+                        <div id="event-tags" class="flex flex-row gap-2 text-base">
+                            <div>
+                                Brass Society
+                            </div>
+                            <div class="font-bold">
+                                ·
+                            </div>
+                            <div class="flex flex-row  items-center gap-1">
+                                <svg class="h-[14px] w-fit" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 520">
+                                    <path fill="#3b82f6" d="M499.1 6.3c8.1 6 12.9 15.6 12.9 25.7l0 72 0 264c0 44.2-43 80-96 80s-96-35.8-96-80s43-80 96-80c11.2 0 22 1.6 32 4.6L448 147 192 223.8 192 432c0 44.2-43 80-96 80s-96-35.8-96-80s43-80 96-80c11.2 0 22 1.6 32 4.6L128 200l0-72c0-14.1 9.3-26.6 22.8-30.7l320-96c9.7-2.9 20.2-1.1 28.3 5z"/>
+                                </svg>
+                                Music
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+             </div>
+             
+        </main>
+    </body>
+    <script src="graphic.js"></script>
+    <script src="../../node_modules/gsap/dist/gsap.js"></script>  <!--GSAP (animation library for .js code)-->
+    <script src="../../dev.js"></script>    <!--Allows for easy debugging (add ?debug=true to url when using the http server)-->
+</html>
