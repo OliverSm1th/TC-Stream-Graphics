@@ -1,6 +1,8 @@
 {
   "dependencies": {
-    "inliner": "^1.13.1"
+    "@tailwindcss/cli": "^4.1.7",
+    "inliner": "^1.13.1",
+    "tailwindcss": "^4.1.7"
   },
   "scripts": {
     "build": "file2=$(find ${npm_config_file} -maxdepth 1 -name '*.html'); inliner $file2 > build/$(sed 's\/\\/\/-\/g' <<< ${npm_config_file}).html",
