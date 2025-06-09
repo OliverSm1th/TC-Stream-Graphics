@@ -3,6 +3,7 @@
     "@tailwindcss/cli": "^4.1.8",
     "browser-sync": "^3.0.4",
     "concurrently": "^9.1.2",
+    "esmify": "^2.1.1",
     "gsap": "^3.13.0",
     "http-server": "^14.1.1",
     "inliner": "^1.13.1",
@@ -16,15 +17,16 @@
     "build": "file2=$(find ${npm_config_file} -maxdepth 1 -name '*.html'); inliner $file2 > build/$(sed 's/\\//-/g' <<< ${npm_config_file}).html",
     "server": "browser-sync start --server --directory --no-open --watch",
     "watch:sass": "sass --watch .",
-    "watch:tail": "file2=$(find ${npm_config_file} -maxdepth 1 -name '*.css' | sed 's/\\.css$//1'); npx @tailwindcss/cli -i ${file2}.css -o ${file2}-build.css --watch",
-    "watch:tsc": "file2=$(find ${npm_config_file} -maxdepth 1 -name '*.html' | sed 's/\\.html$//1'); npx watchify ${file2}.tsx -p [tsify --noImplicitAny] -o ${file2}.js",
+    "watch:tail": "file2=$(find ${npm_config_file} -maxdepth 1 -name '*.html' | sed 's/\\.html$//1'); npx @tailwindcss/cli -i ${file2}.css -o ${file2}-build.css --watch",
+    "watch:tsc": "file2=$(find ${npm_config_file} -maxdepth 1 -name '*.html' | sed 's/\\.html$//1'); npx watchify ${file2}.tsx -p [tsify --noImplicitAny] -p esmify -o ${file2}.js",
     "watch": "concurrently \"npm run watch:tail --file=${npm_config_file}\" \"npm run watch:tsc --file=${npm_config_file}\""
   },
   "scriptsComments": {
     "build": "Compress the graphic files to a single .html file for usage. Requires a build/ folder",
     "server": "Startup a basic http server for use during development",
-    "sass": "If using scss files (fancy css), automatically convert them to css",
-    "tail": "If using tailwind, automatically build a css file"
+    "watch:sass": "If using scss files (fancy css), automatically convert them to css",
+    "watch:tail": "If using tailwind, automatically build a css file",
+    "watch:tsc": "My attempt to get typescript working (it failed :( )"
   },
   "devDependencies": {
     "sass": "^1.84.0",

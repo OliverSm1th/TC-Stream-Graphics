@@ -1,8 +1,10 @@
 const PRETALX_BASE_URL = 'https://submit.wsaf.org.uk';
 const PRETALX_EVENT_SLUG = '2025';
 const PRETALX_API_TOKEN = 'l4jfvarm5wg24bgcxwj584e0c110jfms68qb8288cxfpt445362huaif7n5gmf72'
+const EVENTS_STAGGER = 0.2
 let state = 0;
 let event_num = 0;
+let events = {};
 
 function play() {
     if (state == 0) {
@@ -51,34 +53,54 @@ function newEvent(eventInfo) {
     
 
     parent.appendChild(cloned);
+    events[eventInfo.id] = document.getElementById(event.id);
 }
-function animateInEvent(t_l, event) {
+function animateInEvent(t_l, event, start) {
+    console.log("Animating")
+    const event_time = event.querySelector('#event-time')
     
+    t_l.set(event, {left: 2000, opacity: 1})
+    t_l.set(event_time, {rotate: 0})
+    t_l.to(event, {left: 0, duration:1}, start)
+    t_l.to(event_time, {rotate: '-5deg', duration: 0.1}, start+1)
 }
 
 function animateIn() {
     return new Promise((resolve, reject) => {
-        // 1) Fetch the components which will be animated / updated
-        // const _ = document.querySelector('__'); 
-        
         const t_l  = new gsap.timeline({ease: 'power1.in', onComplete: resolve}); 
-        // 2) Use the timeline to animate the element properties  (can change ease)
-        // - Instantaneously update properties          (property=value)                https://gsap.com/docs/v3/GSAP/Timeline/set()
-        // t_l.set( __component__, {__property__: __value__, ...},  __startTime__);
-        // - Animate properties over a duration         (property: original->value)     https://gsap.com/docs/v3/GSAP/Timeline/to()
-        // t_l.to(  __component__, {__property__: __value__, ..., duration: __time__, ?ease: __ease__}, __startTime__)
-        // - Animate property from a value -> original (property: value->original)      https://gsap.com/docs/v3/GSAP/Timeline/from()
-        // t_l.from(__component__, {__property__: __value__, ..., duration: __time__, ?ease: __ease__}, __startTime__)
-        // Without a __startTime__ provided, these functions will perform in sequence
+        t_l.set('#title-box', {left: 2000, opacity: 1});
+        t_l.set('#events>*', {left: 1000, opacity: 1});
+        t_l.set('#events>div>#event-time', {opacity: 0});
+
+        t_l.to('#title-box', {left: 0, duration:0.8})
+        t_l.to('#events>*', {left: 0, duration:0.7, stagger: EVENTS_STAGGER}, '-=0.2');
+        t_l.set('#events>div>#event-time', {opacity: 1}, '<+=0.9')
+        t_l.from('#events>div>#event-time', {scale: 0.2, duration: 0.7, stagger: EVENTS_STAGGER, ease: 'elastic.out(1.2,0.75)'}, '<')
     })
 }
 function animateOut() {
     return new Promise((resolve, reject) => {
         // Same structure as animateIn, just in reverse (or it can do something else)
         const t_l  = new gsap.timeline({ease: 'power1.in', onComplete: resolve}); 
+        // t_l.set('#title-box', {clipPath: ""});
+        t_l.to('#events>*', {bottom: 500, stagger: EVENTS_STAGGER/2, duration: 0.8});
+        t_l.to('#title-box', {left: 1000, duration: 1}, '-=0.3');
+        t_l.set('#title-box', {left: 0, opacity: 0});
+        t_l.set('#events>*', {bottom: 0, opacity: 0});
+        // t_l.set('#title-box', {left: 2000, opacity: 1});
+        // t_l.set('#events>*', {left: 2000, opacity: 1});
+        // t_l.set('#events>div>#event-time', {opacity: 0});
+
+        // t_l.to('#title-box', {left: 0, duration:0.8})
+        // t_l.to('#events>*', {left: 0, duration:1, stagger: EVENTS_STAGGER}, '-=0.2');
+        // t_l.set('#events>div>#event-time', {opacity: 1}, '<+=1.005')
+        // t_l.from('#events>div>#event-time', {scale: 0.2, duration: 0.7, stagger: EVENTS_STAGGER, ease: 'elastic.out(1.2,0.75)'}, '<')
     })
 }
 
 document.addEventListener("DOMContentLoaded", function(event) {
-    newEvent({time: '12-3pm', name: 'test', type: 'music'})
+    // fetchSchedule();
+    newEvent({time: '12-3pm', name: 'test', type: 'music', id: '123'})
+    newEvent({time: '12-3pm', name: 'test', type: 'music', id: '124'})
+    newEvent({time: '12-3pm', name: 'test', type: 'music', id: '125'})
 })
