@@ -2,6 +2,8 @@
 <html>
     <!-- To build: 
      npm run build -file=wsaf/title-small -- --skip-absolute-urls
+     TODO:
+     - Fix brush stroke svgs
     -->
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,12 +13,18 @@
         <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
     </head>
     <body class="flex h-screen w-screen items-end p-2">
+
         <div style="font-weight: bold; color: #0073e6;white-space: pre-line;position:absolute; top: 0; left: 0;" id="log"></div>
-        <div class="flex relative flex-col text-white font-[Lexend] *:py-1 *:px-3">
-            <div class="w-fit h-fit bg-[#4F1D75] font-bold text-3xl">
+        <svg width="326" height="87" viewBox="0 0 326 87" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <mask id="brush-rotate" style="rotate: 180deg; mask-type">
+                <use href="./brush-stroke-purple.svg#brush-stroke"/>
+            </mask>
+        </svg>
+        <div class="flex relative flex-col text-white font-[Lexend] *:py-2 *:pl-5 *:pr-8">
+            <div class="w-fit h-fit bg-[#4F1D75] font-bold text-3xl brush-bg">
                 Content Warning
             </div>
-            <div class="h-fit w-fit bg-[#6F309E] font-medium text-2xl">
+            <div class="h-fit w-fit bg-[#6F309E] font-medium text-2xl brush-bg">
                 This performance has flashing lights
             </div>
         </div>

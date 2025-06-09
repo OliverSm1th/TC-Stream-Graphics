@@ -1,1 +1,6 @@
 @import "tailwindcss";
+
+.brush-bg {
+    mask-image: url('./brush-stroke-purple.svg');
+    mask-size: 100% auto;
+}
