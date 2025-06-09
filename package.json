@@ -1,14 +1,22 @@
 {
   "dependencies": {
-    "@tailwindcss/cli": "^4.1.7",
+    "@tailwindcss/cli": "^4.1.8",
+    "browser-sync": "^3.0.4",
+    "gsap": "^3.13.0",
+    "http-server": "^14.1.1",
     "inliner": "^1.13.1",
-    "tailwindcss": "^4.1.7"
+    "tailwindcss": "^4.1.8",
+    "tsc": "^2.0.4",
+    "tsify": "^5.0.4",
+    "typescript": "^5.8.3",
+    "watchify": "^4.0.0"
   },
   "scripts": {
-    "build": "file2=$(find ${npm_config_file} -maxdepth 1 -name '*.html'); inliner $file2 > build/$(sed 's\/\\/\/-\/g' <<< ${npm_config_file}).html",
-    "server": "http-server -p 8080 -c-1",
-    "sass": "sass --watch .",
-    "tail": "file2=$(find ${npm_config_file} -maxdepth 1 -name '*.css' | sed 's/\\.css$//1'); npx @tailwindcss/cli -i ${file2}.css -o ${file2}-build.css --watch"
+    "build": "file2=$(find ${npm_config_file} -maxdepth 1 -name '*.html'); inliner $file2 > build/$(sed 's/\\//-/g' <<< ${npm_config_file}).html",
+    "server": "browser-sync start --server --directory --no-open --watch",
+    "watch:sass": "sass --watch .",
+    "watch:tail": "file2=$(find ${npm_config_file} -maxdepth 1 -name '*.css' | sed 's/\\.css$//1'); npx @tailwindcss/cli -i ${file2}.css -o ${file2}-build.css --watch",
+    "watch:tsc": "file2=$(find ${npm_config_file} -maxdepth 1 -name '*.html' | sed 's/\\.html$//1'); npx watchify ${file2}.tsx -p [tsify --noImplicitAny] -o ${file2}.js"
   },
   "scriptsComments": {
     "build": "Compress the graphic files to a single .html file for usage. Requires a build/ folder",
@@ -17,8 +25,6 @@
     "tail": "If using tailwind, automatically build a css file"
   },
   "devDependencies": {
-    "gsap": "^3.12.7",
-    "http-server": "^14.1.1",
     "sass": "^1.84.0",
     "tailwind": "^4.0.0"
   }

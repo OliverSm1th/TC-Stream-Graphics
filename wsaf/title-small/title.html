@@ -1,29 +1,27 @@
 <!DOCTYPE html>
 <html>
     <!-- To build: 
-     npm run build -file=bmc-logo -- --skip-absolute-urls
+     npm run build -file=wsaf/title-small -- --skip-absolute-urls
     -->
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="title-build.css">
-        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
     </head>
-    <body class="flex items-center justify-center">
+    <body class="flex h-screen w-screen items-end p-2">
         <div style="font-weight: bold; color: #0073e6;white-space: pre-line;position:absolute; top: 0; left: 0;" id="log"></div>
-        <div class="flex items-center justify-center relative flex-col text-white font-[Lexend]">
-            <div class="w-fit h-fit bg-[#4F1D75] font-bold">
+        <div class="flex relative flex-col text-white font-[Lexend] *:py-1 *:px-3">
+            <div class="w-fit h-fit bg-[#4F1D75] font-bold text-3xl">
                 Content Warning
             </div>
-            <div class="h-fit w-fit bg-[#5C2686]">
+            <div class="h-fit w-fit bg-[#6F309E] font-medium text-2xl">
                 This performance has flashing lights
             </div>
         </div>
         
     </body>
-    <script src="../node_modules/gsap/dist/gsap.js"></script>
     <script src="title.js"></script>
-    <script src="../dev.js"></script>
+    <script src="../../dev.js"></script>
 </html>
