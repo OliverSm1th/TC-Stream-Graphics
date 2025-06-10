@@ -7,6 +7,7 @@
     "gsap": "^3.13.0",
     "http-server": "^14.1.1",
     "inliner": "^1.13.1",
+    "local-cors-proxy": "^1.1.0",
     "tailwindcss": "^4.1.8",
     "tsc": "^2.0.4",
     "tsify": "^5.0.4",
@@ -19,7 +20,8 @@
     "watch:sass": "sass --watch .",
     "watch:tail": "file2=$(find ${npm_config_file} -maxdepth 1 -name '*.html' | sed 's/\\.html$//1'); npx @tailwindcss/cli -i ${file2}.css -o ${file2}-build.css --watch",
     "watch:tsc": "file2=$(find ${npm_config_file} -maxdepth 1 -name '*.html' | sed 's/\\.html$//1'); npx watchify ${file2}.tsx -p [tsify --noImplicitAny] -p esmify -o ${file2}.js",
-    "watch": "concurrently \"npm run watch:tail --file=${npm_config_file}\" \"npm run watch:tsc --file=${npm_config_file}\""
+    "watch": "concurrently \"npm run watch:tail --file=${npm_config_file}\" \"npm run watch:tsc --file=${npm_config_file}\"",
+    "proxy": "lcp --proxyUrl https://submit.wsaf.org.uk" 
   },
   "scriptsComments": {
     "build": "Compress the graphic files to a single .html file for usage. Requires a build/ folder",
