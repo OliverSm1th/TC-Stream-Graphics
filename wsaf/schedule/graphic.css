@@ -9,3 +9,9 @@
 .box-shadow-xlg {
     box-shadow: 8px 8px 0px 0px rgba(0, 0, 0, 0.35);
 }
+.tag-bullet {
+    display: none;
+}
+#event-by:not(:empty) + .tag-bullet {
+    display: block;
+}

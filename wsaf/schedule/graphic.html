@@ -10,7 +10,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
     </head>
-    <body class="border-gray-700 border-5 h-screen font-[Lexend]">
+    <body class="h-screen font-[Lexend]">
         <img src="../fab-drone.jpg" style="width: 100%; z-index: -1; position: absolute; height: 100%; object-fit: cover;"/>
         <main class="flex items-center absolute right-0 h-full py-20 overflow-hidden">
             <div class="h-full overflow-hidden">
@@ -27,11 +27,11 @@
 
                 </div>
                 <template id="event-template">
-                    <div class="text-[#3B82F6] px-2 relative opacity-0 z-0" id="event">
+                    <div class="text-[#3B82F6] px-2 relative z-0 opacity-0" id="event">
                     <div id="event-time" class="bg-white font-bold px-2 -rotate-2 absolute text-lg box-shadow">
                         00:00-00:00
                     </div>
-                    <div id="event-box" class="bg-white px-3 pt-5 pb-1 flex flex-col mx-4 mt-3 box-shadow-lg">
+                    <div id="event-box" class="bg-white px-3 opacity-95 mt-6 pb-1 pt-1 flex flex-col mx-4 box-shadow-lg">
                         <div id="event-name" class="font-bold text-xl">
                             Event Title
                         </div>
@@ -39,14 +39,15 @@
                             <div id="event-by">
                                 Tag 1
                             </div>
-                            <div class="font-bold">
+                            <div class="font-bold tag-bullet">
                                 ·
                             </div>
                             <div class="flex flex-row  items-center gap-1">
-                                <svg class="h-[14px] w-fit" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 520">
-                                    <path fill="#3b82f6" d="M499.1 6.3c8.1 6 12.9 15.6 12.9 25.7l0 72 0 264c0 44.2-43 80-96 80s-96-35.8-96-80s43-80 96-80c11.2 0 22 1.6 32 4.6L448 147 192 223.8 192 432c0 44.2-43 80-96 80s-96-35.8-96-80s43-80 96-80c11.2 0 22 1.6 32 4.6L128 200l0-72c0-14.1 9.3-26.6 22.8-30.7l320-96c9.7-2.9 20.2-1.1 28.3 5z"/>
+                                <svg id="track-icon">
                                 </svg>
-                                Music
+                                <div id="track-name">
+                                    Music
+                                </div>
                             </div>
                         </div>
                     </div>
