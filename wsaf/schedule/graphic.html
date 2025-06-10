@@ -12,7 +12,8 @@
     </head>
     <body class="border-gray-700 border-5 h-screen font-[Lexend]">
         <img src="../fab-drone.jpg" style="width: 100%; z-index: -1; position: absolute; height: 100%; object-fit: cover;"/>
-        <main class="flex items-center absolute right-0 top-20">
+        <main class="flex items-center absolute right-0 h-full py-20 overflow-hidden">
+            <div class="h-full overflow-hidden">
              <div class="flex flex-col gap-5 overflow-hidden">
                 <div id="title-box" class="bg-[#087f8c] min-w-[650px] opacity-0 relative z-10  flex flex-row text-[25px] py-2 px-3 box-shadow-lg align-middle">
                     <div id="title" class="uppercase font-bold text-white min-w-44">
@@ -22,7 +23,7 @@
                         Benefactors Place
                     </div>
                 </div>
-                <div id="events" class="flex flex-col gap-2">
+                <div id="events" class="flex flex-col gap-2 ">
 
                 </div>
                 <template id="event-template">
@@ -76,7 +77,7 @@
                     </div>
                 </div> -->
              </div>
-             
+            </div>
         </main>
     </body>
     <script src="graphic.js"></script>
