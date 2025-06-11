@@ -13,12 +13,12 @@ let eventElems = [];
 let tracks = {
     'Theatre': {
         label: 'Theatre',
-        icon: "theater-masks.svg",
+        icon: "theater-masks",
         colour: '#a855f7', // purple-500
       },
       'Music': {
         label: 'Music',
-        icon: "music.svg",
+        icon: "music",
         colour: '#3b82f6', // blue-500
       },
       'Comedy':{
@@ -108,6 +108,7 @@ Object.filterV = (obj, predicate) =>
 
 async function updateSchedule(filters) {
     const result = await fetchSchedule();
+    console.log(result)
     const info = result.schedule.conference;
     const days = info.days.filter(d => filters.start ? !(new Date(d.day_end) < filters.start || new Date(d.day_start)> filters.end): true).reduce((res, day)=>{
         let filtered_rooms = Object.filterV(day.rooms, (k,v) => filters.rooms ? filters.rooms.includes(k) : true).flat(1);
@@ -116,14 +117,15 @@ async function updateSchedule(filters) {
         return res;
     },{})
     const parent = document.getElementById('events');
+    const showLocation = (filters.rooms ? filters.rooms.length > 0 : false);
 
     const promiseArray = []
     let i=0
     for(const [day, events] of Object.entries(days)) {
         events.sort((a,b)=>Date.parse(a.date)>Date.parse(b.date)).map((event) => {
-            if(i++ < EVENTS_MAX) promiseArray.push(newEventF(event));
+            if(i++ < EVENTS_MAX) promiseArray.push(newEventF(event, showLocation));
             else {
-                newEventF(event).then(e =>  eventElems.push(e));
+                newEventF(event, showLocation).then(e =>  eventElems.push(e));
             }
         })
     }
@@ -150,17 +152,17 @@ function int_to_hex(num){
     return hex;
 }
 
-function newEventF(event) {
+function newEventF(event, showLocation=false) {
     return new Promise(async (resolve, reject) => {
         let event_date = new Date(event.date).toISOString();
         const event_d = await fetchEventDetails(event.code);    
         const session_d = event_d.sessions.filter(s => s.start == event_date)[0];
-        resolve(newEvent(event_d, session_d));
+        resolve(newEvent(event_d, session_d, showLocation));
     })
 }
 
 
-function newEvent(eventInfo, sessionInfo) {
+function newEvent(eventInfo, sessionInfo, location) {
     /*eventInfo
         artGallery: bool, artist: { name, description, image, instagramHandle, website },
         categoryPretalxTrack, description, dropIn: bool, id, image, name, sessionCount: number,
@@ -185,7 +187,17 @@ function newEvent(eventInfo, sessionInfo) {
     // event.querySelector('#event-box').style.
     event.querySelector('#track-name').textContent = event_track.label;
     // Window.fetch(`./ICON_PATH/${}`)
-    event.querySelector('#track-icon').replaceWith();
+    let icon_ref = document.createElementNS("http://www.w3.org/2000/svg", "use");
+    icon_ref.setAttribute('href', `#${event_track.icon}-icon`);
+    // let icon = document.getElementById(`#${event_track.icon}-icon`)
+    event.querySelector('#track-icon').appendChild(icon_ref);
+    event.querySelector('#track-icon').style.fill = event_track.colour;
+    console.log(sessionInfo)
+    if(location) {
+        event.querySelector('#event-location').textContent = sessionInfo.venue.name
+        event.querySelector('#location-icon').style.fill = event_track.colour;
+    }
+    
     
     return cloned;
 }
@@ -218,7 +230,6 @@ function titleIn(tl=null) {
         tl = new gsap.timeline({ease: 'power1.in'})
     tl.set('#title-box', {left: 2000, opacity: 1})
     tl.to('#title-box', {left: 0, duration:0.8})
-    console.log(tl.time())
 }
 function eventsIn(tl=null) {
     if(tl == null){
@@ -244,5 +255,5 @@ function animateOut() {
 
 document.addEventListener("DOMContentLoaded", async function(event) {
     state = 1;
-    updateSchedule({start: new Date('2025-06-13T04:00:00+01:00'), end: new Date('2025-06-14T03:59:00+01:00'), rooms: ['Benefactors Place Stage']})
+    updateSchedule({start: new Date('2025-06-13T04:00:00+01:00'), end: new Date('2025-06-14T03:59:00+01:00'), rooms: ['Benefactors Place Stage', 'FAB Theatre', 'FAB Terrace']})
 })

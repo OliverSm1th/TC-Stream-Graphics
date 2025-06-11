@@ -9,9 +9,27 @@
 .box-shadow-xlg {
     box-shadow: 8px 8px 0px 0px rgba(0, 0, 0, 0.35);
 }
+.tag-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: calc(var(--spacing) * 1);
+    justify-content: center;
+}
 .tag-bullet {
     display: none;
 }
+
+.tag-bullet-2:has(+.tag-group>#event-info:empty) {
+    display: none;
+}
+.tag-bullet-2:has(+.tag-group>#event-info:not(:empty)) {
+    display: block;
+}
+
 #event-by:not(:empty) + .tag-bullet {
     display: block;
+}
+#event-location-outer:has(#event-location:empty) {
+    display: none;
 }
