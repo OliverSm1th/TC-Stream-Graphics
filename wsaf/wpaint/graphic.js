@@ -28,19 +28,20 @@ function animateIn() {
     // - Animate property from a value -> original (property: value->original)      https://gsap.com/docs/v3/GSAP/Timeline/from()
     // t_l.from(__componentSelector__, {__property__: __value__, ..., duration: __time__, ?ease: __ease__}, __startTime__)
     // Without a __startTime__ provided, these functions will perform in sequence
-    console.log("Animating in...");
+    // console.log("Animating in...");
     rerollImage();
   });
 }
 
 function animateOut() {
   return new Promise((resolve, reject) => {
-    console.log("Animating out...");
+    // console.log("Animating out...");
     const t_l = gsap.timeline({ ease: "power1.in", onComplete: resolve });
   });
 }
 
 function rerollImage() {
   const img = document.getElementById("random-image");
+  // date to invalidate the cache
   img.src = `https://wsaf.org.uk/api/random-image?t=${Date.now()}`;
 }
