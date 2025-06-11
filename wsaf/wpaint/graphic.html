@@ -1,23 +1,33 @@
 <!DOCTYPE html>
 <html>
-    <!-- To build: 
-     npm run build -file=wsaf/[folder_name] -- --skip-absolute-urls
-    -->
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="graphic-build.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">         <!--Google Font-->
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
-    </head>
-    <body>
-        <!-- <img src="../fab-drone.jpg" style="width: 100%; z-index: -1; position: absolute;"/> -->
-        <main class="h-screen flex items-center justify-center">
-            
-            <!-- HTML code Here -->
-        </main>
-    </body>
-    <script src="graphic.js"></script>
-    <script src="../../node_modules/gsap/dist/gsap.js"></script>  <!--GSAP (animation library for .js code)-->
-    <script src="../../dev.js"></script>    <!--Allows for easy debugging (add ?debug=true to url when using the http server)-->
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="graphic-build.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com"> <!--Google Font-->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+</head>
+
+<body class="font-[lexend]">
+    <img src="../fab-drone.jpg"
+        style="width: 100%; z-index: -1; position: absolute; height: 100%; object-fit: cover;" />
+
+    <main class="flex items-center justify-center h-screen">
+        <div class="flex flex-col items-center justify-center w-1/2 h-1/2">
+            <div style="border-radius: 3%;" class=" flex flex-col w-full h-full p-8 bg-[#087f8ccc]">
+                <img id="random-image" class="relative w-full h-full " src="https://wsaf.org.uk/api/random-image" />
+            </div>
+            <span
+                class="text-6xl z-20 -m-10 font-bold box-shadow-xlg mx-auto bg-[#ffbd00] text-black uppercase py-1 px-8">wsaf.org.uk/wpaint</span>
+        </div>
+    </main>
+
+    
+</body>
+<script src="graphic.js"></script>
+<script src="../../node_modules/gsap/dist/gsap.js"></script> <!--GSAP (animation library for .js code)-->
+<script src="../../dev.js"></script>
+<!--Allows for easy debugging (add ?debug=true to url when using the http server)-->
+
 </html>
