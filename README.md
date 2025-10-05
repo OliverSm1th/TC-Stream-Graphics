@@ -11,9 +11,9 @@ In order to use the element (for H2R graphics), you need to build it into a sing
 
 ```bash
 npm install   # Install build dependencies
-npm run build --file=[folderName]
+folder=[folderName] npm run build
 # Adding parameters:
-npm run build --file=[folderName] -- [params]
+folder=[folderName] npm run build -- [params]
 ```
 *Some elements require specific build parameters - check the `html` file*
 

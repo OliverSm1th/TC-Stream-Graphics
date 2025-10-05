@@ -15,7 +15,8 @@
     "watchify": "^4.0.0"
   },
   "scripts": {
-    "build": "file2=$(find ${npm_config_file} -maxdepth 1 -name '*.html'); inliner $file2 > build/$(sed 's/\\//-/g' <<< ${npm_config_file}).html",
+    "build": "file2=$(find $file -maxdepth 1 -name '*.html'); inliner $file2 > build/$(echo $file | tr / -).html",
+
     "server": "browser-sync start --server --directory --no-open --watch",
     "watch:sass": "sass --watch .",
     "watch:tail": "file2=$(find ${npm_config_file} -maxdepth 1 -name '*.html' | sed 's/\\.html$//1'); npx @tailwindcss/cli -i ${file2}.css -o ${file2}-build.css --watch",
