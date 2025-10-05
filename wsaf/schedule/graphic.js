@@ -1,14 +1,28 @@
-const PRETALX_BASE_URL = 'http://localhost:8010/proxy';  // <- Need to setup a cors proxy using 'npm run proxy'
-// const PRETALX_BASE_URL = 'https://submit.wsaf.org.uk';  // <- Waiting for Adam to add CORS to server
-
+// API Fetching:
+const PRETALX_BASE_URL = 'http://localhost:8010/proxy';     // <- Need to setup a cors proxy using 'npm run proxy'
+// const PRETALX_BASE_URL = 'https://submit.wsaf.org.uk';   // <- Currently there's no CORS setup on the WSAF server
 const PRETALX_EVENT_SLUG = '2025';
 const PRETALX_API_TOKEN = 'l4jfvarm5wg24bgcxwj584e0c110jfms68qb8288cxfpt445362huaif7n5gmf72'
 const WSAF_BASE_URL = 'https://wsaf.org.uk/api'
-const ICON_PATH = './icons/'
+
+// API Override:
+const PRETALX_SCHEDULE_OVERRIDE = [{
+    day_start:  "2025-10-05T18:55:00+01:00",
+    day_end:    "2025-10-05T22:00:00+01:00",
+    rooms: {
+        'Helen Martin Studio' : [{
+            
+        }]
+    }
+
+}] // (see fetchSchedule for structure)
+
+// Graphics Config:
 const EVENTS_STAGGER = 0.2;
 const EVENTS_MAX = 8;
+
+
 let state = 0;
-// let events = {};
 let eventElems = [];
 let tracks = {
     'Theatre': {
@@ -59,10 +73,6 @@ let tracks = {
 };
 
 function play() {
-    // if (state == 0) {
-    //     // Prep the graphic (if needed)
-    //     state = 1
-    // }
     if (state == 1) {
         animateIn()
         state = 2
@@ -74,6 +84,7 @@ function play() {
 
 async function fetchSchedule() {
     try{
+        if (PRETALX_SCHEDULE_OVERRIDE) { return PRETALX_SCHEDULE_OVERRIDE }
         const res = await fetch(`${PRETALX_BASE_URL}/${PRETALX_EVENT_SLUG}/p/broadcast-tools/wsaf_schedule.json`, {
             headers: {
                 Authorization: `Token ${PRETALX_API_TOKEN}`,
@@ -81,7 +92,17 @@ async function fetchSchedule() {
               },
         });
         if (!res.ok) {  throw new Error(`${await res.text()}`)    }
-        return res.json()
+        return res.json().schedule.conference.days
+        /* [{
+            day_start : (date representation),
+            day_end :  (date representation),
+            rooms : {
+                (str - Room Name) : [{
+                    date: (date representation),
+                    code: (str -> used in fetchEventDetails)
+                }]
+            }
+        }]  (days[])*/
     } catch(err) {
         throw new Error(`Error fetching Pretalx data: ${err}`)
     }
@@ -92,6 +113,22 @@ async function fetchEventDetails(event_id) {
         });
         if (!res.ok) {  throw new Error(`${await res.text()}`)    }
         return res.json()
+        /* {  -- Basic Required for newEvent to work (pretalyx gives much more)
+            id: (str),
+            name: (str),
+            artist: {
+                name: (str),
+            },
+            categoryPretalxTrack: (Theatre|Music|Comedy|Dance|Visual Art (displayed)|Workshop|MTW Stagefest|Film|Spoken Word)
+            sessions: [{
+                start: (date represntation - should match event.date in fetchSchedule),
+                end: (date representation),
+                venue: {
+                    name: str
+                }
+            }]
+        }
+        */
     } catch(err) {
         throw new Error(`Error fetching WSAF data: ${err}`)
     }
@@ -107,10 +144,9 @@ Object.filterV = (obj, predicate) =>
           .reduce( (res, key) => (res.push(obj[key]), res), [] );
 
 async function updateSchedule(filters) {
-    const result = await fetchSchedule();
-    console.log(result)
-    const info = result.schedule.conference;
-    const days = info.days.filter(d => filters.start ? !(new Date(d.day_end) < filters.start || new Date(d.day_start)> filters.end): true).reduce((res, day)=>{
+    const schedule = await fetchSchedule();
+    const days = schedule.filter(day => filters.start ? !(new Date(day.day_end) < filters.start || new Date(day.day_start)> filters.end): true)
+                         .reduce((res, day)=>{
         let filtered_rooms = Object.filterV(day.rooms, (k,v) => filters.rooms ? filters.rooms.includes(k) : true).flat(1);
         if (filtered_rooms.length > 0)
             res[(typeof day.index == 'number') ? day.date : day.index] = filtered_rooms;
@@ -186,7 +222,6 @@ function newEvent(eventInfo, sessionInfo, location) {
     event.querySelector('#event-box').style.backgroundColor = mix(event_track.colour, '#FFFFFFFF', 0.9)
     // event.querySelector('#event-box').style.
     event.querySelector('#track-name').textContent = event_track.label;
-    // Window.fetch(`./ICON_PATH/${}`)
     let icon_ref = document.createElementNS("http://www.w3.org/2000/svg", "use");
     icon_ref.setAttribute('href', `#${event_track.icon}-icon`);
     // let icon = document.getElementById(`#${event_track.icon}-icon`)
