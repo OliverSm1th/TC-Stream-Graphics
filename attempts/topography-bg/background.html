@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="background-build.css">
+        <!-- <link rel="preconnect" href="https://fonts.googleapis.com">         Google Font -->
+        <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
+        <!-- <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet"> -->
+    </head>
+    <body class="h-screen">
+        <div id="bg" class="h-full"></div>
+    </body>
+
+
+    <script id="vertexshader" type="x-shader/x-vertex">
+// Manipulate the attributes of vertices
+layout (location = 0) in vec3 aPos; // the position variable has attribute position 0
+  
+out vec4 vertexColor; // specify a colour output to the fragment shader
+
+void main()
+{
+    gl_Position = vec4(aPos, 1.0); // see how we directly give a vec3 to vec4's constructor
+    vertexColor = vec4(0.5, 0.0, 0.0, 1.0); // set the output variable to a dark-red color
+}
+    </script>
+
+    
+    <script id="fragmentshader" type="x-shader/x-fragment" src="fragmentshader.glsl">
+// Pixel Shader
+out vec4 FragColor;
+  
+in vec4 vertexColor; // the input variable from the vertex shader (same name and same type)  
+
+void main()
+{
+    FragColor = vertexColor;
+} 
+    </script>
+
+
+
+    <script type="importmap">
+        {   "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@0.179.1/build/three.module.js",
+                "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.179.1/examples/jsm/"
+            }
+        }
+    </script>
+    <script type="module" src="background.js"></script>
+</html>
