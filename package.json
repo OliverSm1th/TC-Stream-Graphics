@@ -12,21 +12,23 @@
     "tsc": "^2.0.4",
     "tsify": "^5.0.4",
     "typescript": "^5.8.3",
+    "watch": "^1.0.2",
     "watchify": "^4.0.0"
   },
   "scripts": {
     "build": "file2=$(find $file -maxdepth 1 -name '*.html'); inliner $file2 > build/$(echo $file | tr / -).html",
-
+    "watch:build": "file2=$(find $file -maxdepth 1 -name '*.html'); func() { watch \"inliner $file2 > build/$(echo $file | tr / -).html $@\" ./$file;}; func",
     "server": "browser-sync start --server --directory --no-open --watch",
     "watch:sass": "sass --watch .",
-    "watch:tail": "file2=$(find ${npm_config_file} -maxdepth 1 -name '*.html' | sed 's/\\.html$//1'); npx @tailwindcss/cli -i ${file2}.css -o ${file2}-build.css --watch",
-    "watch:tsc": "file2=$(find ${npm_config_file} -maxdepth 1 -name '*.html' | sed 's/\\.html$//1'); npx watchify ${file2}.tsx -p [tsify --noImplicitAny] -p esmify -o ${file2}.js",
+    "watch:tail": "file2=$(find $file -maxdepth 1 -name '*.html' | sed 's/\\.html$//1'); npx @tailwindcss/cli -i ${file2}.css -o ${file2}-build.css --watch",
+    "watch:tsc": "file2=$(find $file -maxdepth 1 -name '*.html' | sed 's/\\.html$//1'); npx watchify ${file2}.tsx -p [tsify --noImplicitAny] -p esmify -o ${file2}.js",
     "watch": "concurrently \"npm run watch:tail --file=${npm_config_file}\" \"npm run watch:tsc --file=${npm_config_file}\"",
-    "proxy": "lcp --proxyUrl https://submit.wsaf.org.uk" 
+    "proxy": "lcp --proxyUrl https://submit.wsaf.org.uk"
   },
   "scriptsComments": {
     "build": "Compress the graphic files to a single .html file for usage. Requires a build/ folder",
     "server": "Startup a basic http server for use during development",
+    "watch:build": "Automatically build the single .html file whenever a change is made - Often not necessary, just use the original .html file + build when done",
     "watch:sass": "If using scss files (fancy css), automatically convert them to css",
     "watch:tail": "If using tailwind, automatically build a css file",
     "watch:tsc": "My attempt to get typescript working (it failed :( )"
