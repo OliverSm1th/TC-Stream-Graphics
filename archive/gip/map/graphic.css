@@ -1,0 +1,86 @@
+body {
+    /* background-image: url('../../wsaf/fab-drone.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed; */
+    margin: 0
+}
+
+
+
+.graphic {
+    /* overflow: hidden; */
+    position: absolute;
+    /* bottom: 0; */
+    height: 100%;
+    right: 0;
+    display: flex;
+    flex-direction: row;
+    opacity: 0;
+
+    /* border-radius: 3.9px 3.9px 0 0; */
+    /* background-image:
+        linear-gradient(to right, white, transparent 90%),
+        linear-gradient(to left, white, transparent 90%),; */
+    background-color: #5072D2;
+    /* background-image: radial-gradient(circle, rgba(76, 65, 136, 0.8) 60%, rgba(255, 0, 0, 0) 100%); */
+    /* border-bottom: solid 0.5vh; */
+    /* border-bottom-color: #2d4ba1; */
+    /* border-bottom-color: radial-gradient(circle, rgba(76, 65, 136,) 60%, rgba(255, 0, 0, 0) 100%); */
+    /* margin: 1vh; */
+    /* width: max-content; */
+    width: 33%;
+    right: 0;
+    /* To center align */
+    /* left: 50%; */
+    /* right: 50%; */
+    /* transform: translateX(-50%); */
+    /* For testing: */
+    /* opacity: 1; */
+}
+
+.title {
+    position: absolute;
+    bottom: 0;
+    /* left: 50%; */
+    width: 105%;
+    right: 0;
+    text-align: right;
+    z-index: 2;
+    /* width: max-content; */
+    font-family: "Lexend", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 35px;
+    background-color: #F1977F;
+    padding: 0.5vw;
+}
+
+#map {
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    /* padding-left:  1vw;
+    padding-right: 2vw; 
+    */
+    /* background-color: white;  */
+    /* width: 100%; */
+}
+/* 
+.inner * {
+    margin: 0;
+    white-space: nowrap;
+}
+.title {
+    font-family: "Lexend", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 50px;
+}
+.subtitle {
+    font-family: "Lexend", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    text-align: center;
+    font-size: 30px;
+} */

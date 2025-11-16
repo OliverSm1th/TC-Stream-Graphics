@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <!-- To build: 
+     file=archive/gip/map npm run build -- --skip-absolute-urls 
+    -->
+    <!-- <base href=""> -->
+    <head>
+        <meta charset="utf-8">
+        <title>Procession Map</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="graphic.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+
+        <!-- Leaflet -->
+        <link rel="stylesheet" href="../../../node_modules/leaflet/dist/leaflet.css" />
+        <script src="../../../node_modules/leaflet/dist/leaflet.js"></script>
+
+        <!-- Maplibre GL -->
+        <script src="https://unpkg.com/maplibre-gl@^5.13.0/dist/maplibre-gl.js"></script>
+        <link href="https://unpkg.com/maplibre-gl@^5.13.0/dist/maplibre-gl.css" rel="stylesheet" />
+
+        <!-- Maplibre GL Leaflet  -->
+        <script src="https://unpkg.com/@maplibre/maplibre-gl-leaflet@^0.1.3/leaflet-maplibre-gl.js"></script>
+</head>
+    <body style="margin: 0;">
+        <main class="graphic">
+            <div class="title">
+                Procession Map
+            </div>
+            <div id="map">
+            </div>
+        </main>
+        
+
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+        <script src="../../../node_modules/gsap/dist/gsap.js"></script>
+        <script src="graphic.js"></script>
+        <script src="../../../dev.js"></script>
+
+        <!-- Graphics Data Definition -->
+        <!-- Used by H2R Graphics, describes what parameters can be entered via the update() function -->
+        <!-- <script name="graphics-data-definition" type="application/json+gdd">
+            {
+                "$schema": "https://superflytv.github.io/GraphicsDataDefinition/gdd-meta-schema/v1/schema.json",
+                "title": "Lower Third",
+                "description": "woah",
+                "type": "object",
+                    "properties": {
+                        "p_number": {
+                          "type": "string",
+                          "label": "Number",
+                          "gddType": "single-line"
+                        },
+                        "p_name": {
+                          "type": "string",
+                          "label": "Name",
+                          "gddType": "single-line"
+                        },
+                        "p_info": {
+                          "type": "string",
+                          "label": "Info",
+                          "gddType": "single-line"
+                        },
+                        "p_tags": {
+                            "type": "string",
+                            "label": "tags",
+                            "gddType": "single-line"
+                        },
+                        "logo": {
+                            "type": "string",
+                            "label": "logo",
+                            "gddType": "single-line"
+                        },
+                        "colour": {
+                            "type": "string",
+                            "label": "colour",
+                            "gddType": "single-line"
+                        }
+                }
+            }
+        </script> -->
+    </body>
+</html>

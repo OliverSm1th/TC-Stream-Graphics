@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <!-- To build: 
+     file=generic/l3-title-c npm run build -- --skip-absolute-urls 
+    -->
+    <head>
+        <meta charset="utf-8">
+        <title>Lower-Third</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="../../../anim/l3-grow-2/anim.css">
+        <link rel="stylesheet" href="graphic.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+</head>
+    <body>
+        <!-- <img src="ref.jpg" style="width: 100%; z-index: 3; opacity: 20%; position: absolute; height: 100%; object-fit: contain;"/> -->
+        <main class="graphic">
+            <div class="inner">
+                <img class="logo" src="uow-logo.png" style="height: 5vh;">
+                <!-- <hr width="1" size="500"/> -->
+                <div class="divider" style="height: 9vh; opacity: 40%; border-left: solid; border-left-width: 1.5px; border-left-color: #242424;"></div>
+                <div style="gap: 0px">
+                    <h1 class="title">Sample Title</h3>
+                    <span class="subtitle">Sample Subtitle</span>
+                </div>
+                <img class="crest" src="uow-crest.png" style="height: 8vh; margin-left: auto; margin-right: 0;">
+            </div>
+        </main>
+        <!-- <div id="l2-template" class="tag" style="opacity: 0;">
+            <div class="tag-item">
+                TIME: 5.55
+            </div>
+            
+        </div> -->
+
+        <!-- Required for l3-grow-2 -->
+        <div id="ref" style="display: block; visibility: hidden; background-color: red; width: 100%; height: 100%;">
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+        <script src="../../../node_modules/gsap/dist/gsap.js"></script>
+        <script src="../../../anim/l3-grow-2/anim.js"></script>
+        <script src="graphic.js"></script>
+        <script src="../../../dev.js"></script>
+
+        <!-- Graphics Data Definition -->
+        <!-- Used by H2R Graphics, describes what parameters can be entered via the update() function -->
+        <!-- <script name="graphics-data-definition" type="application/json+gdd">
+            {
+                "$schema": "https://superflytv.github.io/GraphicsDataDefinition/gdd-meta-schema/v1/schema.json",
+                "title": "Lower Third",
+                "description": "woah",
+                "type": "object",
+                    "properties": {
+                        "p_number": {
+                          "type": "string",
+                          "label": "Number",
+                          "gddType": "single-line"
+                        },
+                        "p_name": {
+                          "type": "string",
+                          "label": "Name",
+                          "gddType": "single-line"
+                        },
+                        "p_info": {
+                          "type": "string",
+                          "label": "Info",
+                          "gddType": "single-line"
+                        },
+                        "p_tags": {
+                            "type": "string",
+                            "label": "tags",
+                            "gddType": "single-line"
+                        },
+                        "logo": {
+                            "type": "string",
+                            "label": "logo",
+                            "gddType": "single-line"
+                        },
+                        "colour": {
+                            "type": "string",
+                            "label": "colour",
+                            "gddType": "single-line"
+                        }
+                }
+            }
+        </script> -->
+    </body>
+</html>
