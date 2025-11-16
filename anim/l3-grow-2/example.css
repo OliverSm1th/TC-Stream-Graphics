@@ -1,28 +1,22 @@
-body {
-  background-color: transparent;
-  margin: 0;
+.graphic {
+    border-radius: 3.9px 3.9px 0 0;
+    background-color: rgba(241, 241, 241, 0.8);
+    border-bottom: solid 1.82vh;
+    border-bottom-color: rgba(196, 23, 51, 0.8);
+    margin: 1vh;
+    /* For testing: */
+    /* opacity: 1; */
 }
 
-.graphic {
-  overflow: hidden;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  /* height: 18.2vh; */
-  /* width: fit-content; */
-  display: flex;
-  flex-direction: row;
-  /* opacity: 0; */
-  /* TODO: Is this needed? */
-  margin-right: 1vw;
-  margin-left: 1vw;
-  margin-top: 1vh;
-  margin-bottom: 1vh;
-  /* TODO: Remove (implemented by graphic-specific CSS) */
-  border-bottom: solid 1.82vh;
-  border-bottom-color: rgba(196, 23, 51, 0.8);
-  /* ================================================== */
+.graphic .inner {
+    display: flex;
+    flex-direction: column;
 }
+
+.graphic .inner h3 {
+  padding: 0
+}
+
 
 /* .graphic .num {
   writing-mode: vertical-lr;
@@ -51,25 +45,6 @@ body {
   display: none;
 } */
 
-.graphic .inner {
-  border-radius: 3.9px 0 0 0;
-  height: 100%;
-  width: max-content;
-  align-items: center;
-  
-  /* TODO: Remove (implemented by graphic-specific CSS) */
-  background-color: rgba(241, 241, 241, 0.8);
-  display: flex;
-  flex-direction: column;
-  /* ================================================== */
-}
-/* TODO: Remove (implemented by graphic-specific CSS) */
-.graphic .inner h3 {
-  padding: 0
-}
-
-
-/* =================================================== */
 
 /* .graphic .logo {
   max-width: 90%;

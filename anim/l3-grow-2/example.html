@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <!-- To build: 
+     file=anim/l3-grow-2 npm run build -- --skip-absolute-urls 
+    -->
+    <head>
+        <meta charset="utf-8">
+        <title>Example Graphic</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="anim.css">
+        <link rel="stylesheet" href="example.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <!-- <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet"> -->
+</head>
+    <body>
+        <img src="../../wsaf/fab-drone.jpg" style="width: 100%; z-index: -1; position: absolute; height: 100%; object-fit: cover;"/>
+        <main class="graphic">
+            <div class="inner">
+                <h3 class="title">Oliver Smith</h3>
+                <p class="description">This is a cool description</p>
+                <!-- Tech Crew -->
+            </div>
+            <!-- <div class="num">
+                
+            </div> -->
+        </main>
+        <!-- <div id="l2-template" class="tag" style="opacity: 0;">
+            <div class="tag-item">
+                TIME: 5.55
+            </div>
+            
+        </div> -->
+        <div id="ref" style="display: block; visibility: hidden;">
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/TextPlugin.min.js"></script>
+        <script src="../../node_modules/gsap/dist/gsap.js"></script>
+        <script src="anim.js"></script>
+        <script src="example.js"></script>
+        <script src="../../dev.js"></script>
+    </body>
+</html>
