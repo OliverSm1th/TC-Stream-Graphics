@@ -21,12 +21,12 @@ function g_animateIn(tl) {
     //     },
     // })
     tl.from(split.words, {
-        duration: 1, 
+        duration: 0.5, 
         y: 100,       // animate from 100px below
         autoAlpha: 0, // fade in from opacity: 0 and visibility: hidden
         stagger: 0.05 // 0.05 seconds between each
-    })
-    tl.from('.sub', {
+    }, ">-=0.2")
+    tl.from('.subtitle', {
         opacity: 0,
         y: 20
     })
