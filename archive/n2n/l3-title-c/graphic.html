@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <!-- To build: 
+     file=generic/l3-title-c npm run build -- --skip-absolute-urls 
+    -->
+    <head>
+        <meta charset="utf-8">
+        <title>Lower-Third</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="../../anim/l3-grow-2/anim.css">
+        <link rel="stylesheet" href="graphic.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Mansalva&display=swap" rel="stylesheet">
+</head>
+    <body>
+        <!-- <img src="../../wsaf/fab-drone.jpg" style="width: 100%; z-index: -1; position: absolute; height: 100%; object-fit: cover;"/> -->
+        <main class="graphic">
+            <div class="inner">
+                <h1 class="title">Next to Normal</h3>
+                <div class="sub" style="display: flex; justify-content: center; align-items: center; padding-bottom: 1vh;">
+                    <img src="https://wsaf.org.uk/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fmtw-white.2e7406fa.png&w=3840&q=75" style="height: 6vh">
+                    <span class="subtitle" style="margin-left: 7px; ">Spotlight</span>
+                </div>
+            </div>
+        </main>
+        <!-- <div id="l2-template" class="tag" style="opacity: 0;">
+            <div class="tag-item">
+                TIME: 5.55
+            </div>
+            
+        </div> -->
+
+        <!-- Required for l3-grow-2 -->
+        <div id="ref" style="display: block; visibility: hidden;">
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+        <script src="../../node_modules/gsap/dist/gsap.js"></script>
+        <script src="../../anim/l3-grow-2/anim.js"></script>
+        <script src="graphic.js"></script>
+        <script src="../../dev.js"></script>
+
+        <!-- Graphics Data Definition -->
+        <!-- Used by H2R Graphics, describes what parameters can be entered via the update() function -->
+        <!-- <script name="graphics-data-definition" type="application/json+gdd">
+            {
+                "$schema": "https://superflytv.github.io/GraphicsDataDefinition/gdd-meta-schema/v1/schema.json",
+                "title": "Lower Third",
+                "description": "woah",
+                "type": "object",
+                    "properties": {
+                        "p_number": {
+                          "type": "string",
+                          "label": "Number",
+                          "gddType": "single-line"
+                        },
+                        "p_name": {
+                          "type": "string",
+                          "label": "Name",
+                          "gddType": "single-line"
+                        },
+                        "p_info": {
+                          "type": "string",
+                          "label": "Info",
+                          "gddType": "single-line"
+                        },
+                        "p_tags": {
+                            "type": "string",
+                            "label": "tags",
+                            "gddType": "single-line"
+                        },
+                        "logo": {
+                            "type": "string",
+                            "label": "logo",
+                            "gddType": "single-line"
+                        },
+                        "colour": {
+                            "type": "string",
+                            "label": "colour",
+                            "gddType": "single-line"
+                        }
+                }
+            }
+        </script> -->
+    </body>
+</html>
