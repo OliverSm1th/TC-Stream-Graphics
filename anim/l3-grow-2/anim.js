@@ -4,6 +4,7 @@ const vh = document.documentElement.clientHeight/ 100;
 const vw = document.documentElement.clientWidth / 100;
 let g_width  = -1;
 let g_height = -1;
+let data = {}
 
 async function play() {
     if (state == 1) {
@@ -20,9 +21,12 @@ async function play() {
 async function update(incomingChange) {
     const graphic = document.querySelector('.graphic')
     const changes = JSON.parse(incomingChange)
+    if (Object.keys(changes).length == 0) return
+    if (Object.assign({}, data, JSON.parse(incomingChange)) == data) return
+    data = Object.assign({}, data, JSON.parse(incomingChange))
     if (typeof window.g_updateS != 'function') return
 
-    if (state > 1 && typeof window.g_update === 'function') {
+    if (state == 2 && typeof window.g_update === 'function') {
         let clone = graphic.cloneNode(true)
         clone.id = "graphicC";
         clone.style.height = "";
@@ -37,10 +41,12 @@ async function update(incomingChange) {
         console.log("New Width: "+n_width);
         console.log("New Height: "+n_height);
         g_update(changes, n_height, n_width);
-    } else if(state > 1) {
+    } else if(state == 2) {
         e = async function() {
+            let graphicS = document.querySelector('.graphic') 
+            console.log(graphicS)
             await animateOut()
-            g_updateS(graphic, changes);
+            g_updateS(graphicS, changes);
             await animateIn()
         }
         e()

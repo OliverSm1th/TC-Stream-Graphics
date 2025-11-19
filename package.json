@@ -17,7 +17,7 @@
     "watchify": "^4.0.0"
   },
   "scripts": {
-    "build": " inliner generic/l3-title-c/graphic.html > build/l3-title-c.html",
+    "build": "inliner archive/gip/l3-title-l/graphic.html > build/archive-gip-l3-title-l.html",
     "watch:build": "file2=$(find $file -maxdepth 1 -name '*.html'); func() { watch \"inliner $file2 > build/$(echo $file | tr / -).html $@\" ./$file;}; func",
     "server": "browser-sync start --server --directory --no-open --watch",
     "watch:sass": "sass --watch .",

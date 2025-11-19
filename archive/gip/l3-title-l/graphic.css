@@ -26,7 +26,9 @@
 .logo {
     opacity: 0;
 }
-
+.crest {
+    opacity: 0;
+}
 .inner {
     /* padding-top: auto; */
     /* padding-bottom: auto; */
@@ -51,6 +53,7 @@
     font-weight: 600;
     font-style: normal;
     font-size: 1.4vw;
+    opacity: 0;
 }
 .subtitle {
     font-family: "Lexend", sans-serif;
@@ -59,4 +62,5 @@
     font-style: normal;
     text-align: center;
     font-size: 1.4vw;
+    opacity: 0;
 }

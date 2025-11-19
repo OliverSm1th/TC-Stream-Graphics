@@ -2,8 +2,11 @@ body {
     /* background-image: url('../../wsaf/fab-drone.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed; */
-    margin: 0
+    margin: 0;
+    overflow: hidden;
+    scrollbar-width: none;
 }
+
 
 
 
@@ -43,7 +46,7 @@ body {
     bottom: 0;
     /* left: 50%; */
     width: 105%;
-    right: 0;
+    right: -2px;
     text-align: right;
     z-index: 2;
     /* width: max-content; */

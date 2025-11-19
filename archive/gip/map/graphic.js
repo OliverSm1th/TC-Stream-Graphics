@@ -10,13 +10,15 @@ gsap.registerPlugin(SplitText)
 // !!! IMPORTANT !!!
 // PASTE YOUR TRACCAR API KEY (TOKEN) HERE.
 // You can generate this in the Traccar web interface (Account -> Preferences -> Token).
-const TRACCAR_API_KEY = "RzBFAiEA6Dt3ZixasDuSyn7y_WzjUeBtCT8OPY3MxwlLFaV8B1wCIHAIsrnfh8f20rXE37C_qok2gmZlDmGE7cczC3Z1dreaeyJ1IjoxMDExNDUsImUiOiIyMDI1LTExLTIzVDAwOjAwOjAwLjAwMCswMDowMCJ9";
 const TRACCAR_API_URL = 'https://demo.traccar.org/api/positions';
 const CENTRE_COORDINATES = [52.3808, -1.5610]; // Default center (London)
+const SCALE = 17
 
-const SUN_ICON = L.icon({
-    iconUrl: './light-mode-sun-yellow-circle-20616.svg', // https://www.iconpacks.net/free-icon/light-mode-sun-yellow-circle-20616.html
-    iconSize: [48, 48],   // adjust size as needed
+const SUN_ICON = L.divIcon({
+    // className: "leaflet-data-marker",
+    html: L.Util.template('<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="48" height="48" viewBox="0 0 256 256" xml:space="preserve"><g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;" transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)"><circle cx="45" cy="45" r="45" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(254,192,6); fill-rule: nonzero; opacity: 1;" transform="  matrix(1 0 0 1 0 0) "/><path d="M 70 43 h -7.475 c -0.382 -3.368 -1.717 -6.447 -3.727 -8.97 l 5.294 -5.294 c 0.781 -0.781 0.781 -2.047 0 -2.828 c -0.781 -0.781 -2.047 -0.781 -2.828 0 l -5.294 5.294 c -2.523 -2.01 -5.601 -3.345 -8.97 -3.727 V 20 c 0 -1.104 -0.896 -2 -2 -2 s -2 0.896 -2 2 v 7.475 c -3.368 0.382 -6.447 1.717 -8.97 3.727 l -5.294 -5.294 c -0.78 -0.781 -2.048 -0.781 -2.828 0 c -0.781 0.781 -0.781 2.047 0 2.828 l 5.294 5.294 c -2.01 2.523 -3.345 5.602 -3.727 8.97 H 20 c -1.104 0 -2 0.896 -2 2 s 0.896 2 2 2 h 7.475 c 0.382 3.368 1.717 6.447 3.727 8.97 l -5.294 5.294 c -0.781 0.781 -0.781 2.047 0 2.828 c 0.391 0.391 0.902 0.586 1.414 0.586 s 1.024 -0.195 1.414 -0.586 l 5.294 -5.294 c 2.523 2.01 5.602 3.345 8.97 3.727 V 70 c 0 1.104 0.896 2 2 2 s 2 -0.896 2 -2 v -7.475 c 3.368 -0.382 6.447 -1.717 8.97 -3.727 l 5.294 5.294 c 0.391 0.391 0.902 0.586 1.414 0.586 s 1.023 -0.195 1.414 -0.586 c 0.781 -0.781 0.781 -2.047 0 -2.828 l -5.294 -5.294 c 2.01 -2.523 3.345 -5.602 3.727 -8.97 H 70 c 1.104 0 2 -0.896 2 -2 S 71.104 43 70 43 z M 45 58.646 c -7.525 0 -13.646 -6.122 -13.646 -13.646 c 0 -7.525 6.122 -13.646 13.646 -13.646 c 7.524 0 13.646 6.122 13.646 13.646 C 58.646 52.524 52.524 58.646 45 58.646 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"/></g></svg>'),
+    // iconUrl: './light-mode-sun-yellow-circle-20616.svg', // https://www.iconpacks.net/free-icon/light-mode-sun-yellow-circle-20616.html
+    iconSize: [5, 5],   // adjust size as needed
     iconAnchor: [24, 24], // point of the icon which will correspond to marker's location
     popupAnchor: [0, -24],// point from which the popup should open relative to the iconAnchor
     className: ''         // keep default class (no extra styling)
@@ -83,10 +85,10 @@ async function fetchAndPlotPosition() {
         }
 
         // Update last updated time
-        document.getElementById('last-updated-time').textContent = new Date(timestamp).toLocaleTimeString();
+        // document.getElementById('last-updated-time').textContent = new Date(timestamp).toLocaleTimeString();
 
         // Center the map on the new position
-        map.setView(CENTRE_COORDINATES, 18);
+        map.setView(CENTRE_COORDINATES, SCALE);
 
         console.log(`Successfully loaded position for Device ID: ${firstDevice.deviceId}.`);
 
@@ -108,8 +110,12 @@ window.onload = () => {
     map = L.map('map', { attributionControl: false, zoomControl: false }).setView(CENTRE_COORDINATES, 18); // Default centered at [20, 0] with zoom 2
 
     L.maplibreGL({
-        style: './custom_gip_mapstyle.json',
+        style: 'https://tiles.openfreemap.org/styles/liberty',
     }).addTo(map)
+    // L.maplibreGL().addTo(map)
+    // {
+    //     style: './custom_gip_mapstyle.json',
+    // }
 
     const route = [
         [52.3790808, -1.5609833],
