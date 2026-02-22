@@ -11,9 +11,11 @@ In order to use the element (for H2R graphics), you need to build it into a sing
 
 ```bash
 npm install   # Install build dependencies
-folder=[folderName] npm run build
+file=[folderName] npm run build
 # Adding parameters:
-folder=[folderName] npm run build -- [params]
+file=[folderName] npm run build -- [params]
+# For windows:  (requires devDependencies - npm install --dev)
+npx cross-env file=[folderName] npm run build
 ```
 *Some elements require specific build parameters - check the `html` file*
 

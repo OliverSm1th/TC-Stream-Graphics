@@ -35,6 +35,7 @@
     "watch:tsc": "My attempt to get typescript working (it failed :( )"
   },
   "devDependencies": {
+    "cross-env": "^10.1.0",
     "sass": "^1.84.0",
     "tailwind": "^4.0.0"
   }
