@@ -5,13 +5,15 @@
         linear-gradient(to left, white, transparent 90%),; */
     background-color: #A499F4;
     /* background-image: radial-gradient(circle, rgba(76, 65, 136, 0.8) 60%, rgba(255, 0, 0, 0) 100%); */
-    border-bottom: solid 0.5vh;
+    border-bottom: solid 1.5vh;
     border-bottom-color: #A499F4;
     /* border-bottom-color: radial-gradient(circle, rgba(76, 65, 136,) 60%, rgba(255, 0, 0, 0) 100%); */
     /* margin: 1vh; */
-    padding: 2.3vh;
+    /* padding: 2.3vh; */
+    /* padding-left: 2.3vh;
+    padding-right: 2.3vh; */
     width:88%;
-    height: 7%;
+    height: 15%;
 
     /* To center align */
     /* left: 50%; */
@@ -32,8 +34,8 @@
 .inner {
     /* padding-top: auto; */
     /* padding-bottom: auto; */
-    padding-left:  2.3vw;
-    padding-right: 2vw; 
+    padding-left:  2vw;
+    padding-right: 4vw; 
 
     display: flex;
     flex-direction: row;

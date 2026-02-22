@@ -4,7 +4,8 @@ const vh = document.documentElement.clientHeight/ 100;
 const vw = document.documentElement.clientWidth / 100;
 let g_width  = -1;
 let g_height = -1;
-let data = {}
+let data = {};
+let changed = false;
 
 async function play() {
     if (state == 1) {
@@ -21,12 +22,31 @@ async function play() {
 async function update(incomingChange) {
     const graphic = document.querySelector('.graphic')
     const changes = JSON.parse(incomingChange)
-    if (Object.keys(changes).length == 0) return
-    if (Object.assign({}, data, JSON.parse(incomingChange)) == data) return
-    data = Object.assign({}, data, JSON.parse(incomingChange))
-    if (typeof window.g_updateS != 'function') return
+    if (Object.keys(changes).length == 0) // Nothing sent to change
+        return
+    if (Object.assign({}, data, JSON.parse(incomingChange)) == data) // No change to make
+        return
+    
+    new_data = Object.assign({}, data, JSON.parse(incomingChange))
+    if (typeof window.g_updateS != 'function') // No function to make the change 
+        return
+    
+    if (state != 2) {  // Static update (not visible)
+        data = new_data
+        g_updateS(graphic, changes);
+        return
+    }
 
-    if (state == 2 && typeof window.g_update === 'function') {
+    // Graphic on screen:
+    prev_update = (data['update']       || "0") == "1"
+    new_update  = (new_data['update']   || "0") == "1"
+    data = new_data;
+    changed = true;
+
+    if(!(new_update && !prev_update)) // Need to have prev == 0 + new == 1
+        return
+    
+    if (typeof window.g_update === 'function') {
         let clone = graphic.cloneNode(true)
         clone.id = "graphicC";
         clone.style.height = "";
@@ -41,21 +61,20 @@ async function update(incomingChange) {
         console.log("New Width: "+n_width);
         console.log("New Height: "+n_height);
         g_update(changes, n_height, n_width);
-    } else if(state == 2) {
+        changed = false;
+    } else {
         e = async function() {
             let graphicS = document.querySelector('.graphic') 
             console.log(graphicS)
+            console.log("Animate Out")
             await animateOut()
             g_updateS(graphicS, changes);
-            await animateIn()
+            changed = false;
+            console.log("Animate In")
+            await animateIn();
         }
         e()
-    } else {
-        console.log("Static Update")
-        g_updateS(graphic, changes);
-    }
-    
-
+    } 
 }
 
 function animateIn() {
@@ -100,12 +119,22 @@ function animateOut() {
             width: 0
         })
         // End- Make the graphic invisible (allow the graphic to change size)
-        .set(graphic, {
+        .to(graphic, {
             opacity: 0,
+            duration: 0.2
+        })
+        .set(graphic, {
             width: "",
             height: ""
         })
+
+    }).then(()=> {
+        if (changed) {
+            data = new_data;
+            g_updateS(document.querySelector('.graphic'), data)
+        }
     })
+
 }
 
 

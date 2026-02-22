@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <!-- To build: 
-     file=generic/l3-title-c npm run build -- --skip-absolute-urls 
+     file=archive/gip/l3-title-l npm run build -- --skip-absolute-urls 
     -->
     <head>
         <meta charset="utf-8">
@@ -20,7 +20,7 @@
             <div class="inner">
                 <img class="logo" src="uow-logo.png" style="height: 5vh;">
                 <!-- <hr width="1" size="500"/> -->
-                <div class="divider" style="height: 9vh; opacity: 40%; border-left: solid; border-left-width: 1.5px; border-left-color: #242424;"></div>
+                <div class="divider" style="height: 9vh; opacity: 40%; border-left: solid; border-left-width: 0.18vw; border-left-color: #242424;"></div>
                 <div style="gap: 0px">
                     <h1 class="title">SAMPLE TITLE</h1>
                     <span class="subtitle">SAMPLE SUBTITLE</span>
@@ -47,7 +47,7 @@
                 "title": "Lower Third",
                 "description": "woah",
                 "type": "object",
-                    "properties": {
+                "properties": {
                         "title": {
                           "type": "string",
                           "label": "Title",
@@ -61,6 +61,11 @@
                         "colour": {
                             "type": "string",
                             "label": "colour",
+                            "gddType": "single-line"
+                        },
+                        "update": {
+                            "type": "string",
+                            "label": "Update Values",
                             "gddType": "single-line"
                         }
                 }

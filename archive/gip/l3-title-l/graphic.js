@@ -35,7 +35,7 @@ function g_animateIn(tl) {
     }, ">-=0.2")
     tl.to('.title', {
         opacity: 1
-    }, ">-=0.2")
+    }, ">-=0.3")
     tl.to('.subtitle', {
         opacity: 1
     }, "<+0.3")
@@ -98,8 +98,7 @@ function g_updateS(graphicS, changes) {
     if(changes.colour) {
         graphicS.style.borderBottomColor = changes.colour
         graphicS.style.backgroundColor = changes.colour
-    }
-        
+    }  
 }
 
 // animateIn()
