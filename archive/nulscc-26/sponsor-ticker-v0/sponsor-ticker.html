@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <!-- Build:
+     file=nulscc-26/sponsor-ticker npm run build -- -i 
+     (don't encode images) -->
+    <head>
+        <meta charset="utf-8">
+        <title>NULSCC Logo</title>
+        <meta name="description" content="An animated version of the NULSCC logo">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="sponsor-ticker.css">
+        
+    </head>
+    <body>
+        <div style="font-weight: bold; color: #0073e6;white-space: pre-line;position:absolute; top: 0; left: 0;" id="log"></div>
+        <main class="graphic">
+            <div class="description">
+                <div class="desctxt">Sponsors</div>
+            </div>
+            <div class="helper">
+                <img class="logo"> 
+            </div>
+            
+        </main>
+
+        <script src="../../../node_modules/gsap/dist/gsap.js"></script>
+        <script src="../../../node_modules/gsap/dist/TextPlugin.js"></script>
+        <script src="sponsor-ticker.js"></script>
+        <script src="../../../dev.js"></script>
+        <!-- Graphics Data Definition -->
+        <!-- Used by H2R Graphics, describes what parameters can be entered via the update() function -->
+        <script name="graphics-data-definition" type="application/json+gdd">
+            {
+                "$schema": "https://superflytv.github.io/GraphicsDataDefinition/gdd-meta-schema/v1/schema.json",
+                "title": "Sponsors Ticker",
+                "description": "NULSCC 2026",
+                "type": "object",
+                "properties": {
+                        "categories": {
+                            "label": "Categories", "default": "A|0.4|Supporting\nB|0.3\nC|0.2\nD|0.1\nX|0.1|Supported by\nS|0.1|Stream by",
+                            "type": "string", "gddType": "multi-line"
+                        },
+                        "delay": {
+                          "type": "number",
+                          "label": "Delay (ms)", "default": 6000,
+                          "gddType": "single-line"
+                        },
+                        "seed": {
+                            "type": "number",
+                            "label": "Random Seed", "default": 1,
+                            "gddType": "single-line"
+                        },
+                        "offset": {
+                            "type": "number",
+                            "label": "Offset", "default": 0,
+                            "gddType": "single-line"
+                        },
+                        "refresh_threshold": {
+                            "type": "number",
+                            "label": "Reset Threshold", "default": 0.7,
+                            "gddType": "single-line"
+                        }
+                }
+            }
+        </script>
+    </body>
+</html>

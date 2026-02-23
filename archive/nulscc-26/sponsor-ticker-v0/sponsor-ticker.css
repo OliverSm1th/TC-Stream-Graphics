@@ -1,0 +1,53 @@
+/* SCSS File - sponsor-ticker.scss */
+body {
+  background-color: transparent;
+  margin: 0;
+}
+
+.graphic {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 1vw;
+  margin-top: 1vh;
+  align-items: center;
+  opacity: 0;
+  height: max-content;
+  flex-direction: column;
+}
+
+.graphic .description {
+  text-align: center;
+  vertical-align: middle;
+  height: max-content;
+  background-color: rgba(35, 35, 35, 0.3137254902);
+  width: 100%;
+  opacity: 80%;
+  color: white;
+  font-family: "Poppins";
+  font-weight: 600;
+  font-size: 1vmax;
+  border-radius: 3px 3px 0 0;
+}
+
+.graphic .helper {
+  background-color: rgba(0, 0, 0, 0.1176470588);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 0 3px 3px;
+  overflow: hidden;
+  height: 8vh;
+  width: 10vw;
+}
+
+.graphic .logo {
+  max-width: 95%;
+  max-height: 90%;
+  padding-top: 0.5vh;
+  padding-bottom: 0.5vh;
+  margin-left: 2vw;
+  margin-right: 2vw;
+}
+
+/*# sourceMappingURL=sponsor-ticker.css.map */
