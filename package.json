@@ -17,7 +17,8 @@
     "watchify": "^4.0.0"
   },
   "scripts": {
-    "build": "inliner archive/gip/l3-title-l/graphic.html > build/archive-gip-l3-title-l.html",
+    "build": "file2=$(find $file -maxdepth 1 -name '*.html'); inliner $file2 > build/$(echo $file | tr / -).html",
+    "build-0": "inliner archive/nulscc-26/sponsor-ticker-v0/sponsor-ticker.html > build/archive-nulscc-26-sponsor-ticker-v0.html",
     "watch:build": "file2=$(find $file -maxdepth 1 -name '*.html'); func() { watch \"inliner $file2 > build/$(echo $file | tr / -).html $@\" ./$file;}; func",
     "server": "browser-sync start --server --directory --no-open --watch",
     "watch:sass": "sass --watch .",
