@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <!-- To build: 
+     file=nulscc-25/l3 npm run build -- --skip-absolute-urls 
+    -->
+    <head>
+        <meta charset="utf-8">
+        <title>NULSCC</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="lower-third.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bevan:ital@0;1&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <!-- <div style="font-weight: bold; color: #0073e6;white-space: pre-line;position:absolute; top: 0; left: 0;" id="log"></div> -->
+        <main class="graphic">
+            <div class="inner">
+                <div class="info">
+                    <div class="top">Competitor</div>
+                    <div class="bottom">
+                        <span id="line1">CATEGORY</span>
+                        <span id="line2"># in POSITION</span>
+                    </div>
+                    <div class="helper">
+                        <img class="logo" src="uni-logo.jpg">
+                        <span id="line3">University Name</span>
+                    </div>
+                        
+                    </div>
+            </div>
+            <div class="num">
+                02
+            </div>
+        </main>
+
+        </div>
+        
+        <script src="../../../node_modules/gsap/dist/gsap.js"></script>
+        <script src="lower-third.js"></script>
+        <script src="../../../dev.js"></script>
+
+        <!-- Graphics Data Definition -->
+        <!-- Used by H2R Graphics, describes what parameters can be entered via the update() function -->
+        <script name="graphics-data-definition" type="application/json+gdd">
+            {
+                "$schema": "https://superflytv.github.io/GraphicsDataDefinition/gdd-meta-schema/v1/schema.json",
+                "title": "Lower Third",
+                "description": "woah",
+                "type": "object",
+                    "properties": {
+                        "p_number": {
+                          "type": "string",
+                          "label": "Number",
+                          "gddType": "single-line"
+                        },
+                        "p_name": {
+                          "type": "string",
+                          "label": "Name",
+                          "gddType": "single-line"
+                        },
+                        "p_info": {
+                          "type": "string",
+                          "label": "Info",
+                          "gddType": "single-line"
+                        },
+                        "uni_name": {
+                            "type": "string",
+                            "label": "uni_name",
+                            "gddType": "single-line"
+                        },
+                        "uni_logo": {
+                            "type": "string",
+                            "label": "uni_logo",
+                            "gddType": "single-line"
+                        },
+                        "uni_colour": {
+                            "type": "string",
+                            "label": "uni_colour",
+                            "gddType": "single-line"
+                        }
+                }
+            }
+        </script>
+    </body>
+</html>
