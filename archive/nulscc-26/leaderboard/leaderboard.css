@@ -1,0 +1,118 @@
+body {
+  background-color: transparent;
+  margin: 0;
+}
+
+.rows {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.graphic {
+  /* border-radius: 3.9px 3.9px 0 0; */
+  /* background-image:
+      linear-gradient(to right, white, transparent 90%),
+      linear-gradient(to left, white, transparent 90%),; */
+  /* background-image: radial-gradient(circle, rgba(76, 65, 136, 0.8) 60%, rgba(255, 0, 0, 0) 100%); */
+  /* border-bottom-color: radial-gradient(circle, rgba(76, 65, 136,) 60%, rgba(255, 0, 0, 0) 100%); */
+  /* margin: 1vh; */
+  /* padding-left: 2.3vh;
+  padding-right: 2.3vh; */
+  height: 8vh;
+  /* To center align */
+  /* left: 50%; */
+  /* right: 50%; */
+  /* transform: translateX(-50%); */
+  /* For testing: */
+  opacity: 1;
+  /* vertical-align: middle; */
+  overflow: hidden;
+  display: flex;
+  height: fit-content;
+}
+
+.inner {
+  overflow: hidden;
+  /* padding-top: auto; */
+  /* padding-bottom: auto; */
+  vertical-align: top;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  min-height: 0;
+  height: 8vh;
+  opacity: 1;
+}
+
+.inner * {
+  margin: 0;
+  white-space: nowrap;
+}
+
+.inner .position {
+  flex-shrink: 0;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  background-color: #641f1f;
+  padding-right: 0.1vw;
+  border-bottom: 3px solid;
+}
+
+.inner .position img {
+  width: 6.9vh;
+  height: 6.9vh;
+  object-fit: contain;
+}
+
+.inner .position-number {
+  font-family: "Poppins";
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.9058823529);
+  font-size: 4.5vh;
+  text-align: center;
+}
+
+.inner .position-number:not(:empty) {
+  padding-left: 0.8vw;
+  padding-right: 0.3vw;
+}
+
+.info {
+  height: 100%;
+  position: relative;
+  border-bottom: 5px solid;
+  border-image: linear-gradient(to right, #000 33vw, transparent 33vw) 100% 1;
+}
+
+.info-text {
+  width: 30vw;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.masker {
+  transform-origin: left center;
+  scale: 0 100%;
+}
+
+.mask2 {
+  fill: #641f1f;
+}
+
+.name {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 4vh;
+  text-transform: uppercase;
+}
+
+/*# sourceMappingURL=leaderboard.css.map */

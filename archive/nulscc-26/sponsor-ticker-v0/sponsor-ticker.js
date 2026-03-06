@@ -234,6 +234,14 @@ async function nextLogoIn() {
 async function update(incomingChange) {
     if(state == 1.5) newData = incomingChange
     else newData = false
+    if('categories' in incomingChange) {
+        let categories_s = incomingChange['categories']
+        delete incomingChange['categories']
+        categories = categories_s.split("\n").reduce(
+            (prev, cur) => ({...prev, [cur.split("|")[0]]:cur.split("|").slice(1)}), {}
+        )
+    }
+    
     Object.assign(window, incomingChange)
 
 }

@@ -7,6 +7,9 @@ let g_height = -1;
 let data = {};
 let changed = false;
 
+if(typeof width_d  == 'undefined') width_d = 0.5
+if(typeof height_d == 'undefined') height_d = 0.5
+
 async function play() {
     if (state == 1) {
         state = 1.1
@@ -79,7 +82,7 @@ async function update(incomingChange) {
 
 function animateIn() {
     return new Promise((resolve, reject) => {
-        const graphic = document.querySelector('.graphic')
+        const graphic = document.querySelector('.grow')
         const tl  = new gsap.timeline({ease: 'power1.in', onComplete: resolve});  
         g_height = graphic.clientHeight
         g_width = graphic.clientWidth
@@ -92,11 +95,13 @@ function animateIn() {
         }, 'start')
         // 1) Grow the width of the graphic:     (extending out the bottom border)
         tl.to(graphic, {
-            width: g_width
+            width: g_width,
+            duration: width_d
         }, 'start')
         // 2) Grow the height of the graphic:    (revealing the information)
         tl.to(graphic, {
-            height: g_height
+            height: g_height,
+            duration: height_d
         })
         if (typeof window.g_animateIn === 'function')
             g_animateIn(tl)
