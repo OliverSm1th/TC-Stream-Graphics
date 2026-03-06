@@ -7,7 +7,7 @@ let widths = [];
 window['play'] = play;
 
 const LINES = [
-" National",
+" National",
 "Universities",
 "Lead and Speed",
 "  Climbing",
@@ -34,6 +34,7 @@ async function prep() {
         let line_elem = template.cloneNode();
         line_elem.style.backgroundColor = COLOURS[i];
         line_elem.style.opacity = 0;
+        // line_elem.style.zIndex = `${LINES.length - i}`
         line_elem.appendChild(document.createTextNode(line));
         
         graphic.appendChild(line_elem);
@@ -82,8 +83,8 @@ function animateIn() {
         lines.forEach((line, i) => {
             t1.to(line, {
                 width: widths[i], duration: 0.5,
-                paddingLeft: '2.5vh',
-                paddingRight: '5vh',
+                paddingLeft: '2vh',
+                paddingRight: '4.8vh',
             }, 0.1*i+0.25)
         })
 

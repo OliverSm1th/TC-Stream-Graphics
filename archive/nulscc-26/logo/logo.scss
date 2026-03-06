@@ -21,15 +21,17 @@ body {
     left: 50%;
 }
 
-$fontsize:8.5vh;
+$fontsize:8vh;
 .text-line {
     text-align: right;
     height: min-content;
     width: min-content;
-    color: white;
+    color: #fafafa;
     text-wrap: nowrap;
     overflow:hidden;
     white-space:pre;
+    padding-bottom: 1vh;
+    padding-top: 0.2vh;
     
     font-family: "Oswald", sans-serif;
     font-optical-sizing: auto;
@@ -41,7 +43,7 @@ $fontsize:8.5vh;
     margin-top: -2px;
     line-height: $fontsize*1.05;
     z-index: 0;
-    pad: 0;
+    // pad: 0;
     opacity: 1;
     border-radius: 1.5%;
 }

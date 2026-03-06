@@ -39,10 +39,10 @@ const foldr = (f, acc, arr) =>
 
 
 async function prep_uni() {
-    uni_data = await (await fetch(`https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/image/list/${TAG_NAME}.json`)).json()
+    let uni_data = await (await fetch(`https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/image/list/${TAG_NAME}.json`)).json()
     console.log(uni_data)
     uni_info_dict = uni_data['resources'].reduce((prev, cur) => ((!('context' in cur)) ? prev : {...prev, [cur['public_id']]:{colour: cur['context']['custom']['colour']}}), {})
-    prepped_uni = true
+    fetch_unis = true
 }
 
 function cacheUni(uni_code_p) {
@@ -211,7 +211,7 @@ function animateOutR(tl, row_inner, i) {
 }
 
 function update(incomingChange) {
-    if(!prepped_uni) {setTimeout(() => {update(incomingChange)}, 100); return }
+    if(!fetch_unis) {setTimeout(() => {update(incomingChange)}, 100); return }
     const graphic = document.querySelector('.graphic')
     const changes_json = JSON.parse(incomingChange)
     console.log(changes_json)

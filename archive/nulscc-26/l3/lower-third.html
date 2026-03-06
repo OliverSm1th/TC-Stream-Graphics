@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <!-- To build: 
-     file=nulscc-25/l3 npm run build -- --skip-absolute-urls 
+     file=archive/nulscc-26/l3 npm run build -- --skip-absolute-urls 
     -->
     <head>
         <meta charset="utf-8">
@@ -14,25 +14,33 @@
         <link href="https://fonts.googleapis.com/css2?family=Bevan:ital@0;1&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     </head>
     <body>
+        <!-- <img src="../ref.png" style="width: 100%; z-index: -1; position: absolute; height: 100%; object-fit: cover;"/> -->
+        <!-- <img src="war-ref.png" style="z-index: 3; opacity: 60%; position: absolute; left:18px; bottom:8px; width: 55%;  /* opacity: 0 */"/> -->
         <!-- <div style="font-weight: bold; color: #0073e6;white-space: pre-line;position:absolute; top: 0; left: 0;" id="log"></div> -->
         <main class="graphic">
-            <div class="inner">
-                <div class="info">
+            <div class="left">
+                <div class="inner">
                     <div class="top">Competitor</div>
-                    <div class="bottom">
-                        <span id="line1">CATEGORY</span>
-                        <span id="line2"># in POSITION</span>
-                    </div>
-                    <div class="helper">
-                        <img class="logo" src="uni-logo.jpg">
-                        <span id="line3">University Name</span>
-                    </div>
+                        <div class="bottom">
+                            <div id="line1">OPEN CATEGORY</div>
+                            <div id="line2"># in POSITION</div>
+                        </div>
+                        <div class="helper">
+                            <img class="logo" src="../nulscc-logo.png">
+                            <div id="line3">University</div>
+                        </div>
+                    <!-- <div class="info">
                         
-                    </div>
+                            
+                        </div> -->
+                </div>
             </div>
-            <div class="num">
-                02
+            <div class="right">
+                <div class="num">
+                    00
+                </div>
             </div>
+            
         </main>
 
         </div>
@@ -49,37 +57,32 @@
                 "title": "Lower Third",
                 "description": "woah",
                 "type": "object",
-                    "properties": {
-                        "p_number": {
-                          "type": "string",
-                          "label": "Number",
-                          "gddType": "single-line"
-                        },
-                        "p_name": {
-                          "type": "string",
-                          "label": "Name",
-                          "gddType": "single-line"
-                        },
-                        "p_info": {
-                          "type": "string",
-                          "label": "Info",
-                          "gddType": "single-line"
-                        },
-                        "uni_name": {
-                            "type": "string",
-                            "label": "uni_name",
-                            "gddType": "single-line"
-                        },
-                        "uni_logo": {
-                            "type": "string",
-                            "label": "uni_logo",
-                            "gddType": "single-line"
-                        },
-                        "uni_colour": {
-                            "type": "string",
-                            "label": "uni_colour",
-                            "gddType": "single-line"
-                        }
+                "properties": {
+                    "p_number": {
+                        "type": "string",
+                        "label": "Number",
+                        "gddType": "single-line"
+                    },
+                    "p_name": {
+                        "type": "string",
+                        "label": "Name",
+                        "gddType": "single-line"
+                    },
+                    "p_info": {
+                        "type": "string",
+                        "label": "Info",
+                        "gddType": "single-line"
+                    },
+                    "p_extra": {
+                        "type": "string",
+                        "label": "Extra",
+                        "gddType": "single-line"
+                    },
+                    "uni_id": {
+                        "type": "string",
+                        "label": "Uni ID",
+                        "gddType": "single-line"
+                    }
                 }
             }
         </script>

@@ -24,20 +24,21 @@ body {
   text-align: right;
   height: min-content;
   width: min-content;
-  color: white;
+  color: #fafafa;
   text-wrap: nowrap;
   overflow: hidden;
   white-space: pre;
+  padding-bottom: 1vh;
+  padding-top: 0.2vh;
   font-family: "Oswald", sans-serif;
   font-optical-sizing: auto;
   font-weight: 700;
   font-style: normal;
   letter-spacing: -0.3vh;
-  font-size: 8.5vh;
+  font-size: 8vh;
   margin-top: -2px;
-  line-height: 8.925vh;
+  line-height: 8.4vh;
   z-index: 0;
-  pad: 0;
   opacity: 1;
   border-radius: 1.5%;
 }

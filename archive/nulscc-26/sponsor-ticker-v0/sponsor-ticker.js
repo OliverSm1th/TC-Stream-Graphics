@@ -20,7 +20,7 @@ let categories = {
     "X": [0.1, "Supported by"],
     "S": [0.1, "Stream by"]
 }
-let delay = 6000
+let delay = 120000
 let seed = 6
 let offset = 2
 let refresh_threshold = 1  // Threshold at which to refresh the image mask
