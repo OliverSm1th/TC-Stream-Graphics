@@ -1,0 +1,47 @@
+/* SCSS File - logo.scss */
+
+body {
+    background-color: transparent;
+    margin: 0;
+}
+
+.lt-style-one .logo {
+    position: relative;
+    left: 50%;
+    transform: translateX(-70%);
+    height: 99vh;
+    z-index: 1;
+    opacity: 0;
+}
+
+.graphic {
+    position: absolute;
+    top: 46%;
+    transform:  translateY(-50%);
+    left: 50%;
+}
+
+$fontsize:8.5vh;
+.text-line {
+    text-align: right;
+    height: min-content;
+    width: min-content;
+    color: white;
+    text-wrap: nowrap;
+    overflow:hidden;
+    white-space:pre;
+    
+    font-family: "Oswald", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    letter-spacing: -0.3vh;
+
+    font-size: $fontsize;
+    margin-top: -2px;
+    line-height: $fontsize*1.05;
+    z-index: 0;
+    pad: 0;
+    opacity: 1;
+    border-radius: 1.5%;
+}
