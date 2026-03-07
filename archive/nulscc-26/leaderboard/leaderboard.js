@@ -11,6 +11,7 @@ let data = {};
 let uni_info_dict
 let cached = {}
 let selected = -1
+let to_select = -1
 
 // gsap.registerPlugin(SplitText)
 // https://res.cloudinary.com/dzbir1huh/image/upload/NOT.png
@@ -25,6 +26,10 @@ async function play() {
         state = 1.1
         await animateIn()
         state = 2
+        if(to_select) {
+            select(to_select)
+            to_select = -1
+        }
     } else if(state == 2) {
         state = 1.5
         await animateOut()
@@ -221,6 +226,14 @@ function update(incomingChange) {
             row_str => {let row_arr=row_str.split("|"); return {'pos': row_arr[0], 'id': row_arr[1], 'name': row_arr[2]}}
         )
         changes["rows"].forEach((row) => cacheUni(row['id']))
+    }
+    if("selected" in changes_json) {
+        if(state == 2) {
+            select(changes_json["selected"])
+        } else {
+            to_select = changes_json["selected"]
+        }
+        
     }
     console.log(changes)
     if (Object.keys(changes).length == 0) // Nothing sent to change

@@ -13,12 +13,12 @@ from threading import Timer
 gc = gspread.oauth()
 SHEET = gc.open_by_key("1DUxV-AXe9BIT1edVa4nxugsVYXUZaXqphhQZeJoLQ8c")
 SHEET_SETUP = SHEET.get_worksheet(0)
-SHEET_LEAD_S = SHEET.get_worksheet(2)  # Lead Scores
-SHEET_SPEED_S = SHEET.get_worksheet(3)  # Speed Scores
-SHEET_C_LEADERBOARD = SHEET.get_worksheet(4)
-SHEET_LEADERBOARD = SHEET.get_worksheet(5)
-SHEET_SPEED_F = SHEET.get_worksheet(6)
-SHEET_TC_GUIDANCE = SHEET.get_worksheet(8)
+# SHEET_LEAD_S = SHEET.get_worksheet(2)  # Lead Scores
+# SHEET_SPEED_S = SHEET.get_worksheet(3)  # Speed Scores
+# SHEET_C_LEADERBOARD = SHEET.get_worksheet(4)
+# SHEET_LEADERBOARD = SHEET.get_worksheet(5)
+# SHEET_SPEED_F = SHEET.get_worksheet(6)
+# SHEET_TC_GUIDANCE = SHEET.get_worksheet(8)
 PROJECT_ID = "ABCD"
 BASE_URL = f"http://127.0.0.1:4001/api/{PROJECT_ID}"
 
@@ -42,15 +42,13 @@ widgets = {
 }
 show_widgets = []
 stby_widgets = []
-# tags = {
-
-# }
-time_tag_i = {
+leaderboard_loc = {
 
 }
-prev_time_tag_i = {
-    
+leaderboard_range = {
+
 }
+
 widget_participant = {
 
 }
@@ -98,7 +96,6 @@ def search_participant_num(number: int):
     return SHEET_SETUP.row_values(number+1)
 
 def search_participant_name(name: str):
-    # TODO
     cell = SHEET_SETUP.find(name, in_column=2)
     if(cell == None):
         return False
@@ -125,6 +122,35 @@ def update_participant(widget_id: str, p_data):
         
     requests.post(BASE_URL+"/graphic/"+widget_id+"/update", json={"data": data})
 
+
+def refresh_leaderboard(widget_id: str):
+    if(not widget_id in leaderboard_loc): return
+    start_i = 0 if (not (widget_id in leaderboard_range) or len(leaderboard_range[widget_id])==1) else leaderboard_range[widget_id]
+    end_i   = 6 if (not (widget_id in leaderboard_range)) else (leaderboard_range[widget_id][0] if (len(leaderboard_range[widget_id])==1) else leaderboard_range[widget_id][1])
+
+    l_range = leaderboard_loc[widget_id]
+    l_sheet = SHEET.get_worksheet(0)(l_range[0])
+    ids = l_sheet.col_values(l_range[2])[l_range[2]:]
+    rows = []
+    ranks = []
+    if(len(l_range) == 3):
+        rows = [i for i in range(start_i, end_i)]
+    if(len(l_range) > 3):
+        ranks = l_sheet.col_values(l_range[3])[l_range[2]:]
+        rows = [i[0] for i in sorted(enumerate(ranks), key=lambda x:x[1])][start_i:end_i]
+    print(rows)
+    rows_data = []
+    for(row_i in rows):
+        participant = search_participant_num(ids[row_i])
+        rows_data.append('|'.join([ranks[row_i] if(len(ranks) > 0) else '', participant[1], participant[2]]))
+    rows_data_s = '/'.join(rows_data)
+    requests.post(BASE_URL+"/graphic/"+widget_id+"/update", json={"data": {"rows": rows_data_s}})
+
+def highlight_leaderboard(widget_id:str, row_i):
+    requests.post(BASE_URL+"/graphic/"+widget_id+"/update", json={"data": {"selected": row_i}})
+
+
+
 prompt = """=======Commands=======
 _ _ _ _     - Show/hide widget(s)
 _s          - Standby widget
@@ -134,6 +160,10 @@ _i [text]   - Set info
 _e [text]   - Set extra
 _u [ID]     - Set uni
 _c [colour] - Set colour
+_l [loc]    - Set leaderboard location (sheet, start_row, id_col, rank_col)
+_r          - Refresh leaderboard
+_r [range]  - Set leaderboard range (end/num) (start,end)
+_h [row]    - Highlight leaderboard row (num)
 > """
 # _p [type]   - Show previous time in widget ("[type] time")
 # _p          - Show/hide previous time
@@ -196,6 +226,32 @@ while(in_data != ""):
                 print("Nothing found")
         widget_participant[widget_c] = p[0]
         update_participant(widget, p)
+    elif (option == "l"):
+        params_n = []
+        for i in range(4):
+            if(len(params[i]) == 0):
+                if(i != 3): 
+                    continue
+                else: 
+                    print("Missing parameter "+ params[i])
+                    params_n.append(0)
+                    continue
+
+            if(isnumeric(params[i])): params_n.append(params[i])
+            else: params_n.append(ord(params[i].lower()) - 96)
+
+        leaderboard_loc[widget_c] = params_n
+        refresh_leaderboard(widget_c)
+    elif (option == "r"):
+        if(len(params) == 0):
+            refresh_leaderboard(widget_c)
+        else:
+            params_n = []
+            for i in range(2):
+                if(isnumeric(params[i])): params_n.append(params[i])
+            leaderboard_range[widget_c] = params_n
+    elif (option == "h"):
+        highlight_leaderboard(widget_c, int(params[0])-1 if (len(params)>0 and isnumeric(params[0])) else 1)
 
     in_data = input(prompt)
 
