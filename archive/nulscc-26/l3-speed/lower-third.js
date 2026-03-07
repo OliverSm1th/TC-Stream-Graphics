@@ -11,11 +11,13 @@ let cached;
 let g_height = 0;
 let g_width = 0;
 
-let first_line=true
+let first_line = true
 let side = "right"
 
+let ws_url = 'ws://localhost:8765'
+
 function log(msg) {
-    if (!first_line) msg = "\n"+String(msg)
+    if (!first_line) msg = "\n" + String(msg)
     else first_line = false
 
     document.getElementById('log').textContent += String(msg)
@@ -31,7 +33,7 @@ function play() {
         state = 1
     }
     if (state == 1) {
-        if (!load_uni) {setTimeout(play, 100); return }
+        if (!load_uni) { setTimeout(play, 100); return }
         animateIn()
         state = 2
     } else {
@@ -43,14 +45,14 @@ function play() {
 async function prep_uni() {
     uni_data = await (await fetch(`https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/image/list/${TAG_NAME}.json`)).json()
     console.log(uni_data)
-    uni_info_dict = uni_data['resources'].reduce((prev, cur) => ((!('context' in cur)) ? prev : {...prev, [cur['public_id']]:{colour: cur['context']['custom']['colour'], name: cur['context']['custom']['name']}}), {})
+    uni_info_dict = uni_data['resources'].reduce((prev, cur) => ((!('context' in cur)) ? prev : { ...prev, [cur['public_id']]: { colour: cur['context']['custom']['colour'], name: cur['context']['custom']['name'] } }), {})
     fetch_unis = true
 }
 
 
 async function updateUni(uni_code_p) {
     let uni_code = uni_code_p.toUpperCase()
-    if (!(uni_code in uni_info_dict)){
+    if (!(uni_code in uni_info_dict)) {
         console.log(`Invalid Uni ID: ${uni_code}`)
         return
     }
@@ -58,7 +60,7 @@ async function updateUni(uni_code_p) {
 
     load_uni = false
     img = new Image()
-    img.onload = () => {load_uni = true}
+    img.onload = () => { load_uni = true }
     img.src = `https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/image/upload/${uni_code}`
     cached = img
 
@@ -73,7 +75,7 @@ async function updateUni(uni_code_p) {
 
 
 function update(incomingChange) {
-    if(!fetch_unis) {setTimeout(() => {update(incomingChange)}, 100); return }
+    if (!fetch_unis) { setTimeout(() => { update(incomingChange) }, 100); return }
     newData = Object.assign({}, data, JSON.parse(incomingChange));
 
     // Update text values (number, name + lines)
@@ -90,8 +92,19 @@ function update(incomingChange) {
 
     side = newData["side"] || "right"
 
+    // Update websocket URL
+    if (newData["ws-url"] && newData["ws-url"] != ws_url) {
+        if (ws) ws.close();
+        ws_url = newData["ws-url"];
+        ws = new WebSocket(ws_url);
+        ws.onmessage = (event) => {
+            update_timer_data(event);
+        };
+        ws.onclose = () => console.log("Disconnected from Gateway");
+    }
+
     // Update logo
-    if(newData["uni_id"] != data["uni_id"]){
+    if (newData["uni_id"] != data["uni_id"]) {
         updateUni(newData["uni_id"])
     }
 
@@ -106,7 +119,7 @@ function animateIn() {
         const inner = graphic.querySelector('.inner')
         const num = graphic.querySelector('.right')
         const logo = graphic.querySelector('.logo')
-        const tl  = new gsap.timeline({ease: 'power1.in', onComplete: resolve});
+        const tl = new gsap.timeline({ ease: 'power1.in', onComplete: resolve });
         // Setup - make the graphic visible with no height or width
         tl.set(inner, {
             width: 0
@@ -141,26 +154,26 @@ function animateIn() {
 function animateOut() {
     return new Promise((resolve, reject) => {
         const graphic = document.querySelector('.graphic')
-        const t1  = new gsap.timeline({ease: 'power1.in', onComplete: resolve});
+        const t1 = new gsap.timeline({ ease: 'power1.in', onComplete: resolve });
         // 1) Shrink the height  (hiding everything)
         t1.to(graphic, {
             height: 0
         })
-        // 2) Shrink the width   (hiding the bottom border)
-        // .to(graphic, {
-        //     width: 0
-        // })
-        // End- Make the graphic invisible
-        .set(graphic, {
-            opacity: 0,
-            height: ""
-        })
+            // 2) Shrink the width   (hiding the bottom border)
+            // .to(graphic, {
+            //     width: 0
+            // })
+            // End- Make the graphic invisible
+            .set(graphic, {
+                opacity: 0,
+                height: ""
+            })
     })
 }
 
 // `totalMs` comes from the server as integer milliseconds.
 function formatTime(totalMs) {
-    const s = Math.floor((totalMs / 1000)%100);
+    const s = Math.floor((totalMs / 1000) % 100);
     const ms = totalMs % 1000;
     return `${s.toString().padStart(2, '0')}.${ms.toString().padStart(3, '0')}`;
 }
@@ -174,7 +187,7 @@ function updateLane(time, rx, status) {
     // Update Text
     timerEl.innerText = status === "FS" ? "FS" : formatTime(time);
     // rx is now milliseconds; display in seconds with three decimals
-    rxEl.innerText = rx > 0 ? `${(rx/1000).toFixed(3)}` : '0.000';
+    rxEl.innerText = rx > 0 ? `${(rx / 1000).toFixed(3)}` : '0.000';
     // statusEl.innerText = status === "RUNNING" ? "" : status;
 
     // Update CSS Classes [cite: 51, 52, 53]
@@ -184,15 +197,20 @@ function updateLane(time, rx, status) {
     // if (status === "WIN") statusEl.innerText = "WINNER!";
 }
 
-const ws = new WebSocket('ws://localhost:8765');
 
-ws.onmessage = (event) => {
+
+function update_timer_data(event) {
     const timer_data = JSON.parse(event.data);
     if (side === "right") {
         updateLane(timer_data.right_time, timer_data.right_rx, timer_data.right_status);
     } else if (side === "left") {
         updateLane(timer_data.left_time, timer_data.left_rx, timer_data.left_status);
     }
+}
+
+ws = new WebSocket(ws_url);
+ws.onmessage = (event) => {
+    update_timer_data(event);
 };
 ws.onclose = () => console.log("Disconnected from Gateway");
 
