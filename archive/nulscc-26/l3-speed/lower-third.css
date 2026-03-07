@@ -46,18 +46,50 @@ body {
   padding-top: 0.8vh;
 }
 
-.graphic .num {
+.graphic .timer {
   height: 18.75vh;
-  writing-mode: vertical-lr;
+  width: 17.5vh;
+  z-index: 2;
+  border-radius: 0 7.5px 0 0;
+  background-color: #641f1f;
+  padding-top: 0.8vh;
+}
+
+.graphic .num {
   width: fit-content;
-  font-size: 9vh;
-  line-height: 9.9vh;
+  font-size: 4.5vh;
+  line-height: 5.5vh;
   font-family: "Poppins";
   font-weight: 800;
   color: rgba(255, 255, 255, 0.9058823529);
+  padding-top: 10vh;
+  position: absolute;
+  right: 0.6vh;
+}
+
+.graphic .time {
+  width: fit-content;
+  font-size: 4.5vh;
+  line-height: 5.5vh;
+  font-family: "Noto Sans Mono", monospace;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.9058823529);
   padding-top: 0.8vh;
   position: absolute;
-  bottom: 0;
+  padding-left: 0.6vh;
+}
+
+.graphic .reaction {
+  width: fit-content;
+  font-size: 2vh;
+  line-height: 5.5vh;
+  font-style: italic;
+  font-family: "Poppins";
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.9058823529);
+  position: absolute;
+  padding-left: 0.6vh;
+  padding-top: 5vh;
 }
 
 .top {

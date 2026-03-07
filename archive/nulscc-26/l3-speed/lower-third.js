@@ -12,6 +12,8 @@ let g_height = 0;
 let g_width = 0;
 
 let first_line=true
+let side = "right"
+
 function log(msg) {
     if (!first_line) msg = "\n"+String(msg)
     else first_line = false
@@ -73,7 +75,7 @@ async function updateUni(uni_code_p) {
 function update(incomingChange) {
     if(!fetch_unis) {setTimeout(() => {update(incomingChange)}, 100); return }
     newData = Object.assign({}, data, JSON.parse(incomingChange));
-    
+
     // Update text values (number, name + lines)
     const num = document.querySelector('.num')
     num.textContent = (newData["p_number"] || "").trim().padStart(2, "0")
@@ -85,6 +87,8 @@ function update(incomingChange) {
 
     const line2 = document.querySelector('#line2')
     line2.textContent = (newData["p_extra"] || "").trim()
+
+    side = newData["side"] || "right"
 
     // Update logo
     if(newData["uni_id"] != data["uni_id"]){
@@ -102,7 +106,7 @@ function animateIn() {
         const inner = graphic.querySelector('.inner')
         const num = graphic.querySelector('.right')
         const logo = graphic.querySelector('.logo')
-        const tl  = new gsap.timeline({ease: 'power1.in', onComplete: resolve});  
+        const tl  = new gsap.timeline({ease: 'power1.in', onComplete: resolve});
         // Setup - make the graphic visible with no height or width
         tl.set(inner, {
             width: 0
@@ -114,7 +118,7 @@ function animateIn() {
             height: helper.clientHeight,
             opacity: 1
         }, 'start')
-        
+
         tl.from(logo, {
             rotation: -45,
             scale: 0.1,
@@ -137,7 +141,7 @@ function animateIn() {
 function animateOut() {
     return new Promise((resolve, reject) => {
         const graphic = document.querySelector('.graphic')
-        const t1  = new gsap.timeline({ease: 'power1.in', onComplete: resolve});  
+        const t1  = new gsap.timeline({ease: 'power1.in', onComplete: resolve});
         // 1) Shrink the height  (hiding everything)
         t1.to(graphic, {
             height: 0
@@ -153,5 +157,43 @@ function animateOut() {
         })
     })
 }
+
+// `totalMs` comes from the server as integer milliseconds.
+function formatTime(totalMs) {
+    const s = Math.floor((totalMs / 1000)%100);
+    const ms = totalMs % 1000;
+    return `${s.toString().padStart(2, '0')}.${ms.toString().padStart(3, '0')}`;
+}
+
+function updateLane(time, rx, status) {
+    const timerEl = document.querySelector('.time');
+    // const statusEl = document.getElementById(`status-${side}`);
+    // const rxEl = document.getElementById(`rx-${side}`);
+    const rxEl = document.getElementById(`reaction-time`);
+
+    // Update Text
+    timerEl.innerText = status === "FS" ? "FS" : formatTime(time);
+    // rx is now milliseconds; display in seconds with three decimals
+    rxEl.innerText = rx > 0 ? `${(rx/1000).toFixed(3)}` : '0.000';
+    // statusEl.innerText = status === "RUNNING" ? "" : status;
+
+    // Update CSS Classes [cite: 51, 52, 53]
+    // laneEl.className = `lane ${status}`;
+
+    // Custom Handling for WIN
+    // if (status === "WIN") statusEl.innerText = "WINNER!";
+}
+
+const ws = new WebSocket('ws://localhost:8765');
+
+ws.onmessage = (event) => {
+    const timer_data = JSON.parse(event.data);
+    if (side === "right") {
+        updateLane(timer_data.right_time, timer_data.right_rx, timer_data.right_status);
+    } else if (side === "left") {
+        updateLane(timer_data.left_time, timer_data.left_rx, timer_data.left_status);
+    }
+};
+ws.onclose = () => console.log("Disconnected from Gateway");
+
 prep_uni()
-// play()
