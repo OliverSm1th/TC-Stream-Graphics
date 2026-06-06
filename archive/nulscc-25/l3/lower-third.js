@@ -37,6 +37,9 @@ function update(incomingChange) {
     const num = document.querySelector('.num')
     num.textContent = (data["p_number"] || "").padStart(2, "0")
     const name = document.querySelector('.top')
+    // if(len(name) > 18) {
+
+    // }
     name.textContent = data["p_name"] || ""
 
     const line1 = document.querySelector('#line1')

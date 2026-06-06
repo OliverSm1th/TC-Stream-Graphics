@@ -48,6 +48,11 @@ async function prep_uni() {
 
 async function updateUni(uni_code_p) {
     let uni_code = uni_code_p.toUpperCase()
+
+    if (uni_code[0] == "x"){
+        uni_code = uni_code.substring(1);
+    }
+
     if (!(uni_code in uni_info_dict)){
         console.log(`Invalid Uni ID: ${uni_code}`)
         return
@@ -79,6 +84,13 @@ function update(incomingChange) {
     num.textContent = (newData["p_number"] || "").trim().padStart(2, "0")
     const name = document.querySelector('.top')
     name.textContent = (newData["p_name"] || "").trim()
+    if((newData["p_name"]||"").length > 18) {
+        name.style.fontSize = "4.5vh"
+    } else {
+        name.style.fontSize = "6.5vh"
+    }
+    console.log(name.length)
+    console.log(name.style.fontSize)
 
     const line1 = document.querySelector('#line1')
     line1.textContent = (newData["p_info"] || "").trim()
