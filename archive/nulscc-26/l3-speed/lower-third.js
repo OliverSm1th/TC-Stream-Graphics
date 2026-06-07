@@ -90,7 +90,9 @@ function update(incomingChange) {
     const line2 = document.querySelector('#line2')
     line2.textContent = (newData["p_extra"] || "").trim()
 
-    side = newData["side"] || "right"
+    if (newData["side"] && newData["side"] != side) {
+        side = newData["side"]
+    }
 
     // Update websocket URL
     if (newData["ws-url"] && newData["ws-url"] != ws_url) {
