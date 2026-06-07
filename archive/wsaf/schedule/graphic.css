@@ -13,11 +13,17 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: calc(var(--spacing) * 1);
+    gap: 0.7vw;
     justify-content: center;
 }
 .tag-bullet {
     display: none;
+}
+.tag-parent:has(.tag-group>#event-info:empty):has(.tag-group>#track-name:empty):has(#event-by:empty) {
+    /* display:none; */
+    position: absolute;
+    bottom: 0.32vh;
+    right: 2vw;
 }
 
 .tag-bullet-2:has(+.tag-group>#event-info:empty) {

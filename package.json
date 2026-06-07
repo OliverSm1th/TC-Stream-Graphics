@@ -25,7 +25,7 @@
     "watch:tail": "file2=$(find $file -maxdepth 1 -name '*.html' | sed 's/\\.html$//1'); npx @tailwindcss/cli -i ${file2}.css -o ${file2}-build.css --watch",
     "watch:tsc": "file2=$(find $file -maxdepth 1 -name '*.html' | sed 's/\\.html$//1'); npx watchify ${file2}.tsx -p [tsify --noImplicitAny] -p esmify -o ${file2}.js",
     "watch": "concurrently \"npm run watch:tail --file=${npm_config_file}\" \"npm run watch:tsc --file=${npm_config_file}\"",
-    "proxy": "lcp --proxyUrl https://submit.wsaf.org.uk"
+    "proxy": "concurrently \"lcp --proxyUrl https://submit.wsaf.org.uk --port 8010\" \"lcp --proxyUrl https://pretalx.wsaf.org.uk/api --port 8011\""
   },
   "scriptsComments": {
     "build": "Compress the graphic files to a single .html file for usage. Requires a build/ folder",

@@ -12,15 +12,18 @@ function play() {
         
         [c1,c2,c3,c4] = document.querySelectorAll('#uwcs_c1, #uwcs_c2, #uwcs_c3, #uwcs_c4'); 
         text = document.querySelector("#uwcs_text")
-        // 
         state = 1
     }
     if (state == 1) {
-        animateIn()
-        state = 2
-    } else {
-        animateOut()
-        state = 1
+        state = 1.5
+        animateIn().then(() => {state = 2})
+    }
+    else if (state == 2) {
+        state = 1.5
+        animateOut().then(() => {state = 1})
+    }
+    else {
+        setTimeout(() => {play()}, 100)
     }
 }
 
@@ -41,14 +44,12 @@ function animateIn() {
         
 
         t_l.set("#uwcs_text", {opacity: 1});
-        t_l.from("#uwcs_text > *", {duration:1,stagger: 0.15, opacity: 0})
+        t_l.from("#uwcs_text > *", {duration:0.8,stagger: 0.15, opacity: 0})
         // [c1,c2,c3,c4].forEach((elem, i) => {
         //     t_l.to(elem, {"r": CIRCLE_RADIUS, duration: 0.5, ease: 'elastic.out(1.2,0.75)'}, i*0.15);
         // });
         
         // t_l.to(text, {drawSVG: "0% 100%", duration: 1}, 0);
-        
-        console.log("Finished")
     })
 }
 function animateOut() {
@@ -56,5 +57,6 @@ function animateOut() {
         // Same structure as animateIn, just in reverse (or it can do something else)
         const t_l  = new gsap.timeline({ease: 'power1.in', onComplete: resolve}); 
         t_l.to("#uwcs_c1, #uwcs_c2, #uwcs_c3, #uwcs_c4", {"r": 0, duration: 0.2}, 'start');
+        t_l.to("#uwcs_text", {duration:0.2, opacity: 0})
     })
 }
