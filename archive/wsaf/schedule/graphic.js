@@ -1,9 +1,10 @@
 // API Fetching:
-const PRETALX_BASE_URL = 'http://localhost:8010/proxy';     // <- Need to setup a cors proxy using 'npm run proxy'
-//const PRETALX_BASE_URL = 'https://submit.wsaf.org.uk';   // <- Currently there's no CORS setup on the WSAF server
+// const PRETALX_BASE_URL = 'http://localhost:8010/proxy';     // <- Need to setup a cors proxy using 'npm run proxy'
+const PRETALX_BASE_URL = 'https://submit.wsaf.org.uk';   // <- Currently there's no CORS setup on the WSAF server
 const PRETALX_EVENT_SLUG = '2026';
 const PRETALX_API_TOKEN = 'a1a7swzazrfsxypofabs1vudgbxy3atoclmu77ky111mvdebhtfmmawprzriywns'
-const PRETALX_API_URL = `http://localhost:8011/proxy`
+// const PRETALX_API_URL = `http://localhost:8011/proxy`;
+const PRETALX_API_URL = 'https://pretalx.wsaf.org.uk/api';
 const PRETALX_SCHEDULE_V = 53  // 0.5
 
 // API Override:
@@ -12,7 +13,7 @@ const PRETALX_SCHEDULE_V = 53  // 0.5
 //     day_end:    "2025-10-05T22:00:00+01:00",
 //     rooms: {
 //         'Helen Martin Studio' : [{
-            
+
 //         }]
 //     }
 // }] // (see fetchSchedule for structure)
@@ -135,14 +136,14 @@ async function fetchSchedule() {
 async function fetchEventDetails(event_slug) {
     try{
         // const res = await fetch(`${PRETALX_API_URL}/events/${PRETALX_EVENT_SLUG}/submissions/${event_slug}`, {
-        const res = await fetch(`${PRETALX_API_URL}/events/${PRETALX_EVENT_SLUG}/slots?submission=${event_slug}&schedule=${PRETALX_SCHEDULE_V}`, {
+        const res = await fetch(`${PRETALX_API_URL}/events/${PRETALX_EVENT_SLUG}/slots/?submission=${event_slug}&schedule=${PRETALX_SCHEDULE_V}`, {
             headers: {
                 Authorization: `Token ${PRETALX_API_TOKEN}`,
                 Accept: 'application/json',
               },
         });
         if (!res.ok) {  throw new Error(`${await res.text()}`)    }
-        let json = await res.json() 
+        let json = await res.json()
         return json.results
         /* {  -- Basic Required for newEvent to work (pretalyx gives much more)
             id: (str),
@@ -165,11 +166,11 @@ async function fetchEventDetails(event_slug) {
     }
 }
 
-Object.filter = (obj, predicate) => 
+Object.filter = (obj, predicate) =>
     Object.keys(obj)
           .filter( key => predicate(key, obj[key]) )
           .reduce( (res, key) => (res[key] = obj[key], res), {} );
-Object.filterV = (obj, predicate) => 
+Object.filterV = (obj, predicate) =>
     Object.keys(obj)
           .filter( key => predicate(key, obj[key]) )
           .reduce( (res, key) => (res.push(obj[key]), res), [] );
@@ -180,7 +181,7 @@ async function updateSchedule(filters) {
         parent.innerHTML = '';
         eventElems = [];
     }
-    const schedule = await fetchSchedule(); 
+    const schedule = await fetchSchedule();
     const days = schedule.filter(day => filters.start ? !(new Date(day.day_end) < filters.start || new Date(day.day_start)> filters.end): true)
                          .reduce((res, day)=>{
         let filtered_rooms = Object.filterV(day.rooms, (k,v) => filters.rooms.length > 0 ? filters.rooms.includes(k) : true).flat(1);
@@ -204,15 +205,15 @@ async function updateSchedule(filters) {
         elems.forEach(elem => {
         parent.appendChild(elem);
     }))
-    .then(() => {if (state > 1.5) eventsIn(); else console.log("Loaded")});    
+    .then(() => {if (state > 1.5) eventsIn(); else console.log("Loaded")});
 }
 function mix(col1, col2, percentage) {
     col1 = col1.replace('#','');  col2 = col2.replace('#','');
     var colour1 = [parseInt(col1[0] + col1[1], 16), parseInt(col1[2] + col1[3], 16), parseInt(col1[4] + col1[5], 16)];
     var colour2 = [parseInt(col2[0] + col2[1], 16), parseInt(col2[2] + col2[3], 16), parseInt(col2[4] + col2[5], 16)];
-    var color3 = [ 
-        (1 - percentage) * colour1[0] + percentage * colour2[0], 
-        (1 - percentage) * colour1[1] + percentage * colour2[1], 
+    var color3 = [
+        (1 - percentage) * colour1[0] + percentage * colour2[0],
+        (1 - percentage) * colour1[1] + percentage * colour2[1],
         (1 - percentage) * colour1[2] + percentage * colour2[2]
     ];
     return '#' + int_to_hex(color3[0]) + int_to_hex(color3[1]) + int_to_hex(color3[2]);
@@ -252,8 +253,8 @@ function newEventF(event, showLocation=false) {
 
 function newEvent(eventInfo, sessionInfo, location) {
     /*eventInfo
-        code, id, logo date, start (12:00), duration (00:30), room (Name), slug, 
-        url, title, subtitle, track (Name), type (Name), abstract, description,  
+        code, id, logo date, start (12:00), duration (00:30), room (Name), slug,
+        url, title, subtitle, track (Name), type (Name), abstract, description,
         answers
       sessionInfo
         id, room (code), start, end, submission (code), duration, slot_type, is_visible
@@ -261,8 +262,8 @@ function newEvent(eventInfo, sessionInfo, location) {
     const template = document.getElementById('event-template');
     let cloned = template.content.cloneNode(true);
     let event = cloned.getElementById("event")
-    
-    
+
+
     event.id='event-'+eventInfo.id;
 
     event.querySelector('#event-time').textContent = (sessionInfo.start && sessionInfo.end) ? formatTimeStr(sessionInfo.start, sessionInfo.end) : '';
@@ -288,7 +289,7 @@ function newEvent(eventInfo, sessionInfo, location) {
             event.querySelector('#location-icon').style.fill = event_track.colour;
         }
     }
-    
+
     return cloned;
 }
 function formatTimeStr(start_s, end_s) {
@@ -308,7 +309,7 @@ function formatTimeStr(start_s, end_s) {
         start_f = start_f.slice(0, -2);
     }
     return start_f + " - " + end_f;
-} 
+}
 
 function animateIn() {
     return new Promise((resolve, reject) => {
@@ -383,7 +384,7 @@ async function update(incomingChange) {
         console.log("Animating Out")
         await new Promise((resolve, reject) => {
             const t_l = new gsap.timeline({ease: 'power1.in', onComplete: resolve})
-            
+
             if(filterChanged) {
                 eventsOut(t_l);
             }
@@ -404,7 +405,7 @@ async function update(incomingChange) {
         console.log( data["venueFilter"].split(",").map(x => x.trim()).filter(x => x.length > 0))
         await updateSchedule({start: new Date(data["dateStart"]), end: new Date(data["dateEnd"]), rooms: data["venueFilter"].split(",").map(x => x.trim()).filter(x => x.length > 0)})
     }
-    
+
     if (state == 2) {
         console.log("Animating In")
         await new Promise((resolve, reject) => {
