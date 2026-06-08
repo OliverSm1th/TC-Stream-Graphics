@@ -1,0 +1,171 @@
+body {
+  opacity: 87%;
+  background-color: transparent;
+  margin: 0;
+}
+
+.graphic {
+  overflow: hidden;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  flex-direction: row;
+  width: max-content;
+  opacity: 0;
+  margin-right: 1vw;
+  margin-left: 1vw;
+  margin-bottom: 1vh;
+  display: flex;
+}
+
+.graphic .left {
+  width: 62.5vh;
+}
+
+.graphic .inner {
+  height: 18.75vh;
+  background-color: rgba(241, 241, 241, 0.8);
+  padding-top: 0.8vh;
+  width: 62.5vh;
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  flex-direction: column;
+  gap: 0.4vh;
+  z-index: 1;
+  color: #641f1f;
+}
+
+.graphic .right {
+  height: 18.75vh;
+  width: 9.9vh;
+  z-index: 2;
+  border-radius: 0 7.5px 0 0;
+  background-color: #641f1f;
+  padding-top: 0.8vh;
+}
+
+.graphic .timer {
+  height: 18.75vh;
+  width: 17.5vh;
+  z-index: 2;
+  border-radius: 0 7.5px 0 0;
+  background-color: #641f1f;
+  padding-top: 0.8vh;
+}
+
+.graphic .num {
+  width: fit-content;
+  font-size: 4.5vh;
+  line-height: 5.5vh;
+  font-family: "Poppins";
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.9058823529);
+  padding-top: 10vh;
+  position: absolute;
+  right: 0.6vh;
+}
+
+.graphic .time {
+  width: fit-content;
+  font-size: 4.5vh;
+  line-height: 5.5vh;
+  font-family: "Noto Sans Mono", monospace;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.9058823529);
+  padding-top: 0.8vh;
+  position: absolute;
+  padding-left: 0.6vh;
+}
+
+.graphic .reaction {
+  width: fit-content;
+  font-size: 2vh;
+  line-height: 5.5vh;
+  font-style: italic;
+  font-family: "Poppins";
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.9058823529);
+  position: absolute;
+  padding-left: 0.6vh;
+  padding-top: 5vh;
+}
+
+.top {
+  height: 9vh;
+  font-family: "Poppins", serif;
+  font-weight: 800;
+  font-style: normal;
+  font-size: 6.5vh;
+  text-transform: uppercase;
+  vertical-align: middle;
+  line-height: 4.5vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding-top: 0.4vh;
+  padding-left: 0.8vw;
+  flex-grow: 0;
+}
+
+.bottom {
+  width: max-content;
+  font-family: "Poppins";
+  display: flex;
+  flex-direction: row;
+  font-weight: 600;
+  font-size: 2.875vh;
+  line-height: 3.01875vh;
+  flex-grow: 1;
+  gap: 2vw;
+  padding-left: 0.8vw;
+}
+
+.graphic .helper {
+  display: flex;
+  font-family: "Poppins";
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 110%;
+  height: 4.75vh;
+  gap: 0.2vw;
+  background-color: #641f1f;
+}
+
+.graphic .logo {
+  padding-left: 1px;
+  height: 100%;
+}
+
+.graphic #line1 {
+  opacity: 0.7;
+}
+
+.graphic #line2 {
+  background-color: #641f1f;
+  color: #ffffff;
+  border-radius: 5px;
+  height: fit-content;
+  padding: 2px;
+  padding-right: 4px;
+  padding-left: 4px;
+}
+
+.graphic #line2:empty {
+  opacity: 0;
+}
+
+.graphic #line3 {
+  color: #ffffff;
+  font-family: "Poppins";
+  font-weight: 550;
+  font-size: 2.875vh;
+  text-transform: uppercase;
+  overflow: hidden;
+  white-space: nowrap;
+  height: 100%;
+}
+
+/*# sourceMappingURL=lower-third.css.map */
